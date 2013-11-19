@@ -1,0 +1,329 @@
+# German translations for speedfunding.
+# Copyright (C) 2013 ORGANIZATION
+# This file is distributed under the same license as the speedfunding
+# project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: speedfunding 0.0\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2013-11-19 11:44+0100\n"
+"PO-Revision-Date: 2013-11-19 11:50+0100\n"
+"Last-Translator: Christoph Scheid <christoph.scheid@c3s.cc>\n"
+"Language-Team: de <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 1.3\n"
+"X-Generator: Poedit 1.5.4\n"
+
+#: speedfunding/views.py:27
+msgid "Austria"
+msgstr "Österreich"
+
+#: speedfunding/views.py:28
+msgid "Belgium"
+msgstr "Belgien"
+
+#: speedfunding/views.py:29
+msgid "Bulgaria"
+msgstr ""
+
+#: speedfunding/views.py:30
+msgid "Switzerland"
+msgstr ""
+
+#: speedfunding/views.py:31
+msgid "Czech Republic"
+msgstr ""
+
+#: speedfunding/views.py:32
+msgid "Germany"
+msgstr ""
+
+#: speedfunding/views.py:33
+msgid "Denmark"
+msgstr ""
+
+#: speedfunding/views.py:34
+msgid "Spain"
+msgstr ""
+
+#: speedfunding/views.py:35
+msgid "Estonia"
+msgstr ""
+
+#: speedfunding/views.py:36
+msgid "Finland"
+msgstr ""
+
+#: speedfunding/views.py:37
+msgid "France"
+msgstr ""
+
+#: speedfunding/views.py:38
+msgid "United Kingdom"
+msgstr ""
+
+#: speedfunding/views.py:39
+msgid "Greece"
+msgstr ""
+
+#: speedfunding/views.py:40
+msgid "Hungary"
+msgstr ""
+
+#: speedfunding/views.py:41
+msgid "Croatia"
+msgstr ""
+
+#: speedfunding/views.py:42
+msgid "Israel"
+msgstr ""
+
+#: speedfunding/views.py:43
+msgid "Ireland"
+msgstr ""
+
+#: speedfunding/views.py:44
+msgid "Italy"
+msgstr ""
+
+#: speedfunding/views.py:45
+msgid "Lithuania"
+msgstr ""
+
+#: speedfunding/views.py:46
+msgid "Latvia"
+msgstr ""
+
+#: speedfunding/views.py:47
+msgid "Luxembourg"
+msgstr ""
+
+#: speedfunding/views.py:48
+msgid "Malta"
+msgstr ""
+
+#: speedfunding/views.py:49
+msgid "Netherlands"
+msgstr ""
+
+#: speedfunding/views.py:50
+msgid "Poland"
+msgstr ""
+
+#: speedfunding/views.py:51
+msgid "Portugal"
+msgstr ""
+
+#: speedfunding/views.py:52
+msgid "Slovakia"
+msgstr ""
+
+#: speedfunding/views.py:53
+msgid "Slovenia"
+msgstr ""
+
+#: speedfunding/views.py:54
+msgid "Sweden"
+msgstr ""
+
+#: speedfunding/views.py:55
+msgid "other"
+msgstr ""
+
+#: speedfunding/views.py:103
+msgid "I want to pay for the donation/shirt via paypal ... or rather not."
+msgstr "Ich möchte für Überweisungen PayPal benutzen ... oder eher nicht."
+
+#: speedfunding/views.py:107
+msgid "Yes, PayPal is OK for me."
+msgstr "Ja, PayPal passt mir."
+
+#: speedfunding/views.py:108
+msgid "No. I will transfer the money myself."
+msgstr "Nein, ich überweise lieber selber."
+
+#: speedfunding/views.py:119
+msgid "Donate"
+msgstr "Spende"
+
+#: speedfunding/views.py:120
+msgid "T-Shirt"
+msgstr "T-Shirt"
+
+#: speedfunding/views.py:121
+msgid "Shares"
+msgstr "Anteile"
+
+#: speedfunding/views.py:149 speedfunding/views.py:322
+#: speedfunding/views.py:410
+msgid "Please note: There were errors, please check the form below."
+msgstr ""
+"Bitte beachten: Es sind Fehler aufgetreten. Bitte das Formular unten "
+"kontrollieren."
+
+#: speedfunding/views.py:253
+msgid "I want to say thanks with money. I donate:"
+msgstr "Ich möchte mir Geld Danke sagen bzw. etwas spenden."
+
+#: speedfunding/views.py:266
+msgid "Address Line 1"
+msgstr "Straße & Nummer"
+
+#: speedfunding/views.py:271
+msgid "Address Line 2"
+msgstr "Adresszusatz"
+
+#: speedfunding/views.py:275
+msgid "Post Code"
+msgstr "Postleitzahl"
+
+#: speedfunding/views.py:280
+msgid "City"
+msgstr "Ort"
+
+#: speedfunding/views.py:285
+msgid "Country"
+msgstr "Land"
+
+#: speedfunding/views.py:297
+msgid "The Donation"
+msgstr "Die Spende"
+
+#: speedfunding/views.py:301
+msgid "Personal Data"
+msgstr "Personenbezogene Daten"
+
+#: speedfunding/views.py:310
+msgid "Yes, I want to donate!"
+msgstr "Ja, ich möchte spenden!"
+
+#: speedfunding/views.py:311 speedfunding/views.py:391
+msgid "Go back, let me start over again."
+msgstr "Warte mal, zurück auf Anfang, bitte."
+
+#: speedfunding/views.py:367
+msgid "Yes, I'll have a T-Shirt please! Send Me"
+msgstr "Ja, Ich möchte ein T-Shirt, bitte! Schickt mir..."
+
+#: speedfunding/views.py:373
+msgid "Size S"
+msgstr "Größe S"
+
+#: speedfunding/views.py:375
+msgid "Size M"
+msgstr "Größe M"
+
+#: speedfunding/views.py:377
+msgid "Size L"
+msgstr "Größe L"
+
+#: speedfunding/views.py:379
+msgid "Size XL"
+msgstr "Größe XL"
+
+#: speedfunding/views.py:381
+msgid "Size XXL"
+msgstr "Größe XXL"
+
+#: speedfunding/views.py:390
+msgid "Yes, I want this T-Shirt!"
+msgstr "Ja, ich will das T-Shirt"
+
+#. Default: Speedfunding for Cultural Commons Collecting Society (C3S SCE)
+#: speedfunding/templates/base.pt:7
+msgid "speedfunding-form-title"
+msgstr "Speedfunding für die Cultural Commons Collecting Society (C3S SCE)"
+
+#. Default: Speedfund the Cultural Commons Collecting Society (C3S)
+#: speedfunding/templates/donate.pt:18 speedfunding/templates/shirt.pt:18
+#: speedfunding/templates/success.pt:9
+msgid "donate-form-title"
+msgstr "Speedfunde die Cultural Commons Collecting Society (C3S)"
+
+#. Default: Donate
+#. Default: T-Shirts!
+#: speedfunding/templates/donate.pt:32 speedfunding/templates/shirt.pt:32
+msgid "donate-form-headline"
+msgstr "Spende"
+
+#. Default: ...some helpful instructions...
+#. Default: kjhflasd lkjhadljkd lkajssh
+#: speedfunding/templates/shirt.pt:33 speedfunding/templates/success.pt:18
+msgid "donate-form-fill-verify-print-send"
+msgstr ""
+
+#. Default: Speedfund the Cultural Commons Collecting Society (C3S)
+#: speedfunding/templates/speedfunding.pt:18
+msgid "speedfund-form-title"
+msgstr ""
+
+#. Default: Donate Money
+#: speedfunding/templates/speedfunding.pt:46
+msgid "donate-money-heading"
+msgstr "Spende Geld"
+
+#. Default: Donec id elit non mi porta gravida at eget metus. Fusce dapibus,
+#. tellus
+#. ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo
+#. sit
+#. amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio
+#. dui.
+#: speedfunding/templates/speedfunding.pt:47
+msgid "donate-money-paragraph"
+msgstr ""
+
+#. Default: Get a T-Shirt
+#: speedfunding/templates/speedfunding.pt:52
+msgid "tshirt-heading"
+msgstr "Hol Dir ein Shirt"
+
+#. Default: Donec id elit non mi porta gravida at eget metus. Fusce dapibus,
+#. tellus
+#. ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo
+#. sit
+#. amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio
+#. dui.
+#: speedfunding/templates/speedfunding.pt:53
+msgid "tshirt-paragraph"
+msgstr ""
+
+#. Default: Buy Shares
+#: speedfunding/templates/speedfunding.pt:58
+#| msgid "success-headline"
+msgid "shares-heading"
+msgstr "Erwerbe Anteile."
+
+#. Default: Donec sed odio dui. Cras justo odio, dapibus ac facilisis in,
+#. egestas
+#. eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus,
+#. tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum
+#. massa.
+#: speedfunding/templates/speedfunding.pt:59
+msgid "shares-paragraph"
+msgstr ""
+
+#. Default: Your help is needed immediately!
+#: speedfunding/templates/speedfunding.pt:67
+msgid "speedfund-form-headline"
+msgstr "Wir brauchen dringend Deine Unterstützung!"
+
+#. Default: Please pick an option that suits you best.
+#. Default: But first, we ask you how you want to pay. If you choose PayPal, we
+#. get
+#. your data from them. If you choose to transfer the money to us by yourself,
+#. we
+#. need to collect some basic information.
+#: speedfunding/templates/speedfunding.pt:68
+#: speedfunding/templates/speedfunding.pt:71
+msgid "join-form-fill-verify-print-send"
+msgstr ""
+
+#. Default: Success
+#: speedfunding/templates/success.pt:17
+msgid "success-headline"
+msgstr "Das hat funktioniert."

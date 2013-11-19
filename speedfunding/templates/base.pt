@@ -3,61 +3,76 @@
       xml:lang="en"
       xmlns:tal="http://xml.zope.org/namespaces/tal"
       xmlns:metal="http://xml.zope.org/namespaces/metal">
-<head>
-  <title i18n:translate="speedfunding-form-title">Speedfunding for Cultural Commons Collecting Society (C3S SCE)</title>
-  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-  <meta name="keywords" content="Speedfunding for C3S SCE" />
-  <meta name="description" content="" />
-  <link rel="shortcut icon" href="${request.static_url('speedfunding:static/favicon.ico')}" />
-  <!-- link rel="stylesheet" href="${request.static_url('speedfunding:static/pylons.css')}" type="text/css" media="screen" charset="utf-8" / -->
-  <tal:block metal:define-slot="deform-js-css"></tal:block>
-  <!--[if lte IE 6]>
-  <link rel="stylesheet" href="${request.static_url('speedfunding:static/ie6.css')}"
-	type="text/css" media="screen" charset="utf-8" />
-  <![endif]-->
-</head>
-<body>
-  <div id="wrap">
-    <div id="top">
-      <div class="top align-center">
-        <div><img src="${request.static_url('speedfunding:static/logo_horiz_w700.png')}"
-		  alt="Cultural Commons Collecting Society (C3S)"/></div>
+  <head>
+    <title i18n:translate="speedfunding-form-title">Speedfunding for Cultural Commons Collecting Society (C3S SCE)</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <meta name="keywords" content="Speedfunding for C3S SCE"/>
+    <meta name="description" content="" />
+    <link rel="shortcut icon" href="${request.static_url('speedfunding:static/favicon.ico')}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <!--link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen"/ -->
+    <link href="/static/bootstrap/css/bootstrap.css" rel="stylesheet"/>
+    <link href="/static/bootstrap/css/bootstrap-responsive.css" rel="stylesheet"/>
+    <!-- link rel="stylesheet" href="${request.static_url('speedfunding:static/pylons.css')}" type="text/css" media="screen" charset="utf-8" / -->
+
+    <!--[if lte IE 6]>
+    <link rel="stylesheet" href="${request.static_url('speedfunding:static/ie6.css')}"
+          type="text/css" media="screen" charset="utf-8" />
+    <![endif]-->
+    <tal:block metal:define-slot="meta"></tal:block>
+  </head>
+  <body>
+    <div id="container">
+      <!--div id="wrap"-->
+      <!--div id="top"-->
+      <!--div class="top align-center"-->
+      <div>
+        <a href="/">
+          <img src="${request.static_url('speedfunding:static/logo_horiz_w700.png')}"
+	       alt="Cultural Commons Collecting Society (C3S)"/>
+        </a>
       </div>
-    </div>
-    <div id="middle">
-      <div class="middle align-center">
-        <p class="app-welcome">
-	  <tal:block metal:define-slot="middle"></tal:block>
-        </p>
+      <div id="middle">
+        <div class="middle align-center">
+          <p class="app-welcome">
+	    <tal:block metal:define-slot="middle"></tal:block>
+          </p>
+        </div>
       </div>
-    </div>
-    <div id="bottom">
-      <div class="bottom">
-	<tal:block metal:define-slot="bottom"></tal:block>
+      <div id="bottom">
+        <div class="bottom">
+	  <tal:block metal:define-slot="bottom"></tal:block>
+        </div>
       </div>
+      <div id="footer">
+        <div class="footer">
+          &nbsp;<br />
+          &nbsp;<br />
+          &nbsp;<br />
+          &nbsp;<br />
+          &nbsp;<br />
+          &nbsp;<br />
+          &copy; Copyright 2013, C3S SCE. &nbsp; &nbsp;
+          <!-- <a target="_blank" style="text-decoration:none; color:black; font-size:66%"
+	       href="https://www.transifex.com/projects/p/Speedfunding/resource/POT/"
+	       title="Want more langages? Help us translate on Transifex.com">
+	       <img border="0" alt="image shows languages and percentages translated"
+	            src="static/Speedfunding-transifex-languages.png"
+	            style="vertical-align: middle;" />  &nbsp; &nbsp;
+	       <img border="0" alt="transifex.com logo"
+	            src="static/transifex-logo.png"
+	            style="vertical-align: middle;" />
+          </a> -->
+        </div>
+      </div>
+      <tal:block metal:define-slot="deform-load"></tal:block>
+      <!-- JavaScript -->
+      <script src="${request.static_url('deform:static/scripts/jquery-2.0.3.min.js')}"
+              type="text/javascript"></script>
+      <script src="${request.static_url('deform:static/scripts/bootstrap.min.js')}"
+              type="text/javascript"></script>
+
+      <tal:block metal:define-slot="deform-js-css"></tal:block>
     </div>
-  </div>
-  <div id="footer">
-    <div class="footer">
-      &nbsp;<br />
-      &nbsp;<br />
-      &nbsp;<br />
-      &nbsp;<br />
-      &nbsp;<br />
-      &nbsp;<br />
-      &copy; Copyright 2013, C3S SCE. &nbsp; &nbsp;
-      <!-- <a target="_blank" style="text-decoration:none; color:black; font-size:66%"
-	 href="https://www.transifex.com/projects/p/Speedfunding/resource/POT/"
-	 title="Want more langages? Help us translate on Transifex.com">
-	<img border="0" alt="image shows languages and percentages translated"
-	     src="static/Speedfunding-transifex-languages.png"
-	     style="vertical-align: middle;" />  &nbsp; &nbsp;
-	<img border="0" alt="transifex.com logo"
-	     src="static/transifex-logo.png"
-	     style="vertical-align: middle;" />
-      </a> -->
-    </div>
-  </div>
-	<tal:block metal:define-slot="deform-load"></tal:block>
-</body>
+  </body>
 </html>

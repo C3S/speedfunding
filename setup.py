@@ -9,29 +9,36 @@ with open(os.path.join(here, 'CHANGES.txt')) as f:
     CHANGES = f.read()
 
 requires = [
+    'Babel',
     'deform',
+    'lingua',
     'pyramid',
     'pyramid_beaker',
     'pyramid_chameleon',
     'pyramid_debugtoolbar',
     'pyramid_localize',
+    'pyramid_mailer',
     'pyramid_tm',
     'SQLAlchemy',
     'transaction',
-    'zope.sqlalchemy',
     'waitress',
-    ]
-
+    'zope.sqlalchemy',
+]
+test_requires = [
+    'nose',
+    'coverage',
+    'webtest',
+]
 setup(name='speedfunding',
       version='0.0',
       description='speedfunding',
       long_description=README + '\n\n' + CHANGES,
       classifiers=[
-        "Programming Language :: Python",
-        "Framework :: Pyramid",
-        "Topic :: Internet :: WWW/HTTP",
-        "Topic :: Internet :: WWW/HTTP :: WSGI :: Application",
-        ],
+          "Programming Language :: Python",
+          "Framework :: Pyramid",
+          "Topic :: Internet :: WWW/HTTP",
+          "Topic :: Internet :: WWW/HTTP :: WSGI :: Application",
+      ],
       author='',
       author_email='',
       url='',
@@ -40,11 +47,16 @@ setup(name='speedfunding',
       include_package_data=True,
       zip_safe=False,
       test_suite='speedfunding',
-      install_requires=requires,
+      install_requires=requires + test_requires,
       entry_points="""\
       [paste.app_factory]
       main = speedfunding:main
       [console_scripts]
       initialize_speedfunding_db = speedfunding.scripts.initializedb:main
       """,
+      message_extractors={
+          'speedfunding': [
+              ('**.py', 'lingua_python', None),
+              ('**.pt', 'lingua_xml', None),
+          ]},
       )

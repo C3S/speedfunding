@@ -1,0 +1,36 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      metal:use-macro="base"
+      i18n:domain="speedfunding">
+  <tal:block metal:fill-slot="meta">
+    <meta http-equiv="refresh" content="5; URL=https://yes.c3s.cc/">
+  </tal:block>
+  <tal:block metal:fill-slot="middle">
+    <h1 i18n:translate="donate-form-title">Speedfund the Cultural Commons Collecting Society (C3S)</h1>
+  </tal:block>
+  <tal:block metal:fill-slot="bottom">
+    <div style="text-align:left;">
+      <strong style="color:red;" tal:repeat="message request.session.pop_flash('message_above_form')">
+	${message}
+      </strong>
+    </div> &nbsp;
+    <h2 i18n:translate="shares-headline" class="deform">Shares</h2>
+    <p i18n:translate="shares-paragraph-1">
+      We will redirect you to our Membership Application Form...
+      ...and in case that does not work, please click the link below.
+    </p>
+    <p>
+      <a href="https://yes.c3s.cc">https://yes.c3s.cc</a>
+    </p>
+    <div class="row-fluid">
+      <div class="span4">
+        <h2>Come again, come again!</h2>
+        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+        <p><a class="btn" href="/">Start over again! &raquo;</a></p>
+      </div>
+    </div>
+  </tal:block>
+</html>

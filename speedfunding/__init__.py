@@ -20,11 +20,16 @@ def main(global_config, **settings):
     config = Configurator(settings=settings,
                           session_factory=session_factory,)
     config.include('pyramid_chameleon')
+    config.add_static_view('static_deform', 'deform:static')
     config.add_subscriber('speedfunding.subscribers.add_base_template',
                           'pyramid.events.BeforeRender')
     config.add_subscriber('speedfunding.subscribers.add_locale_to_cookie',
                           'pyramid.events.NewRequest')
     config.add_static_view('static', 'static', cache_max_age=3600)
-    config.add_route('speedfund', '/')
+    config.add_route('speedfund', '/')  # the landing page
+    config.add_route('donate', '/donate')
+    config.add_route('shirt', '/shirt')
+    config.add_route('success', '/success')
+    config.add_route('yes', '/yes')
     config.scan()
     return config.make_wsgi_app()
