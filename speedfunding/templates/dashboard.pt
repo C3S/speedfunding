@@ -2,14 +2,18 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xml:lang="en"
       xmlns:tal="http://xml.zope.org/namespaces/tal"
-      xmlns:metal="http://xml.zope.org/namespaces/metal">
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="speedfunding">
+      <!-- metal:use-macro="base" -->
+
   <head>
-    <title i18n:translate="speedfunding-form-title">Speedfund C3S</title>
+    <title>Speedfunding Dashboard</title>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <meta name="keywords" content="Membership Application to join C3S SCE" />
     <meta name="description" content="" />
     <link rel="shortcut icon" href="${request.static_url('speedfunding:static/favicon.ico')}" />
-    <link rel="stylesheet" href="${request.static_url('speedfunding:static/pylons.css')}" type="text/css" media="screen" charset="utf-8" />
+    <!-- link rel="stylesheet" href="${request.static_url('speedfunding:static/pylons.css')}" type="text/css" media="screen" charset="utf-8" / -->
     <tal:block metal:define-slot="deform-js-css"></tal:block>
     <!--[if lte IE 6]>
         <link rel="stylesheet" href="${request.static_url('speedfunding:static/ie6.css')}"
@@ -33,7 +37,7 @@
           <a href="${request.route_url('dashboard', number=previous)}">&lt;previous</a>
           <a href="${request.route_url('dashboard', number=next)}">next&gt;</a>
         </p>
-        <table border="1" cellpadding="10" width="90%">
+        <table border="0" cellpadding="10" width="90%" class="table-striped">
 	  <tr>
             <td>id</td>
             <td>code</td>

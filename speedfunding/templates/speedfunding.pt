@@ -1,3 +1,4 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xml:lang="en"
       xmlns:tal="http://xml.zope.org/namespaces/tal"
@@ -114,12 +115,12 @@
     
     <!-- Example row of columns -->
     <div class="row-fluid">
-      <div class="span6">
+      <div class="span5">
         <h3 i18n:translate="speedfund-subheading-help" class="deform">
           We need your help to finish the race!
         </h3>
         <p i18n:translate="speedfunding-help-paragraph-1">
-          On our blog you can read about the details of our cost during the last crowdfunding (https://www.c3s.cc/wo-geht-euer-geld-hin/). Therefore, we have decided to reduce it to a minimum. We are speedfunding the last missing amount on our very own. No crowdfunding platform. We don't want to spend our members' money for any cost that can be avoided.
+          On our blog you can read about the details of our cost during the last crowdfunding. Therefore, we have decided to reduce it to a minimum. We are speedfunding the last missing amount on our very own. No crowdfunding platform. We don't want to spend our members' money for any cost that can be avoided.
         </p>
         <a href="https://www.c3s.cc/wo-geht-euer-geld-hin/">
           https://www.c3s.cc/wo-geht-euer-geld-hin/
@@ -144,7 +145,7 @@
           <a href="http://www.c3s.cc">http://www.c3s.cc</a>
         </p>
       </div>
-      <div class="span6">
+      <div class="span7">
         <p>
           <iframe src="//player.vimeo.com/video/70236760" width="500" height="281" 
                   frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen>
@@ -164,9 +165,5 @@
       </p>
       </div>
     </div>
-  </tal:block>
-  <tal:block metal:fill-slot="deform-load">
-    <!--! loading deform -->
-    <script type="text/javascript">deform.load()</script>
   </tal:block>
 </html>

@@ -62,7 +62,9 @@ class Speedfundings(Base):
     payment_received_date = Column(
         DateTime(), default=datetime(1970, 1, 1))
 
-    def __init__(self, speed_id, firstname, lastname, email,
+    def __init__(self,
+                 #speed_id,
+                 firstname, lastname, email,
                  address1, address2, postcode, city, country,
                  locale,
                  donation, shirt_size, comment,):

@@ -19,7 +19,7 @@ from ..models import (
     C3sStaff,
     Group,
     Base,
-    )
+)
 
 
 def usage(argv):
@@ -43,7 +43,7 @@ def main(argv=sys.argv):
     # a speedfunding item
     with transaction.manager:
         speedfunding_item = Speedfundings(
-            speed_id=u"RANDOMCODE",
+            #speed_id=u"RANDOMCODE",  # is always generated
             firstname=u"karl",
             lastname=u"ranseier",
             email=u"noreply@c3s.cc",

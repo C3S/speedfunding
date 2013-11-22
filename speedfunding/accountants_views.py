@@ -176,7 +176,7 @@ def accountants_desk(request):
             return HTTPFound(
                 location=request.route_url(
                     'detail',
-                    memberid=_entry.id)
+                    speed_id=_entry.id)
             )
         except:
             # choose default
@@ -344,14 +344,6 @@ def speedfunding_detail(request):
     #log.info("detail view.................................................")
     #print("---- authenticated_userid: " + str(logged_in))
 
-    # this following stanza is overridden by the views permission settings
-    #if logged_in is None:  # not authenticated???
-    #    return HTTPFound(  # go back to login!!!
-    #        location=route_url(
-    #            'login',
-    #            request=request),
-    #    )
-
     speedfundingid = request.matchdict['speed_id']
     #log.info("the id: %s" % speedfundingid)
 
@@ -367,13 +359,9 @@ def speedfunding_detail(request):
         """
         colander schema (form) to change details of speedfunding
         """
-        #signature_received = colander.SchemaNode(
-        #    colander.Bool(),
-        #    title=_(u"Have we received a good signature?")
-        #)
         payment_received = colander.SchemaNode(
             colander.Bool(),
-            title=_(u"Have we received payment for the shares?")
+            title=_(u"Have we received payment for the funding item??")
         )
 
     schema = ChangeDetails()
