@@ -3,14 +3,84 @@
 # http://docs.pylonsproject.org/projects/pyramid/dev/narr/testing.html
 #                                            #creating-functional-tests
 import unittest
+import transaction
 from pyramid import testing
 from speedfunding.models import DBSession
 
 
-def _initTestingDB():
+def _populate_testDB():
     """
     set up a database to run tests against
     """
+    from speedfunding.models import (
+        Speedfundings,
+        Group,
+        C3sStaff,
+        TheTotal
+    )
+    # a speedfunding item
+    with transaction.manager:
+        speedfunding_item = Speedfundings(
+            firstname=u"karl",
+            lastname=u"ranseier",
+            email=u"noreply@c3s.cc",
+            address1=u"lange straße 123",
+            address2=u"hinterhof",
+            city=u"hauptort",
+            postcode="12345",
+            country="CC",
+            locale="DE",
+            donation=u"4",
+            shirt_size=u"2",
+            comment=u"no comment ;-)"
+        )
+        #try:
+        DBSession.add(speedfunding_item)
+        #DBSession.flush()
+        #print("adding speedfunding_item")
+        #except:
+        #    print("could not add speedfunding_item.")
+            # pass
+    # a total
+    with transaction.manager:
+        a_total = TheTotal(
+            amount_actual=u'4200',
+            amount_promised=u'5000',
+            #time='2013-11-20',
+            num_shirts='0'
+        )
+        try:
+            DBSession.add(a_total)
+            DBSession.flush()
+            print("adding a total")
+        except:
+            print("could not add the total.")
+            # pass
+    # a group for authorization
+    with transaction.manager:
+        accountants_group = Group(name=u"staff")
+        try:
+            DBSession.add(accountants_group)
+            DBSession.flush()
+            print("adding group staff")
+        except:
+            print("could not add group staff.")
+            # pass
+    # staff personnel
+    with transaction.manager:
+        staffer1 = C3sStaff(
+            login=u"rut",
+            password=u"berries",
+            email=u"noreply@c3s.cc",
+        )
+        staffer1.groups = [accountants_group]
+        try:
+            DBSession.add(staffer1)
+            print("adding staff rut")
+            DBSession.flush()
+        except:
+            print("it borked! (rut)")
+            # pass
     return DBSession
 
 
@@ -24,7 +94,7 @@ class FunctionalTests(unittest.TestCase):
         self.config = testing.setUp()
         self.config.include('pyramid_mailer.testing')
         #DBSession.remove()
-        self.session = _initTestingDB()
+        #DBSession = _initTestingDB()
         my_settings = {
             'sqlalchemy.url': 'sqlite:///speedfunding_test.db',  # the database
             'available_languages': 'de en',
@@ -32,6 +102,14 @@ class FunctionalTests(unittest.TestCase):
         from speedfunding import main
         #try:
         app = main({}, **my_settings)
+
+        from sqlalchemy import create_engine
+        engine = create_engine('sqlite://')
+        DBSession.configure(bind=engine)
+        from speedfunding.models import Base
+        Base.metadata.create_all(engine)
+
+        #import pdb; pdb.set_trace()
         #except:
         #    app = main({}, **my_other_settings)
         #    pass
@@ -54,52 +132,52 @@ class FunctionalTests(unittest.TestCase):
         """
         res = self.testapp.get('/', status=200)
         self.failUnless('Speedfund' in res.body)
-        # try invalid user
-        form = res.form
-        form['deformField1'] = 'paypal'
-        res2a = form.submit('donate')
-        res2b = res2a.follow()
-        print(res2b.body)
+        self.failUnless('Donate' in res.body)
+
+    def test_login_and_dashboard(self):
+        """
+        load the login page and log in, test the dashboard
+        """
+        # login
+        res2 = self.testapp.get('/login', status=200)
+        # try valid user & invalid password
+        form = res2.form
+        form['login'] = 'rut'
+        form['password'] = 'berry'
+        res3 = form.submit('submit', status=200)
+        # try valid user, valid password
+        form = res2.form
+        form['login'] = 'rut'
+        form['password'] = 'berries'
+        res3 = form.submit('submit', status=302)
+        #
+        # being logged in ...
+        res4 = res3.follow()
+        #print(res4.body)
         self.failUnless(
-            'Donate' in res2b.body)
-#         # try valid user & invalid password
-#         form = res2.form
-#         form['login'] = 'rut'
-#         form['password'] = 'berry'
-#         res3 = form.submit('submit', status=200)
-#         # try valid user, valid password
-#         form = res2.form
-#         form['login'] = 'rut'
-#         form['password'] = 'berries'
-#         res3 = form.submit('submit', status=302)
-#         #
-#         # being logged in ...
-#         res4 = res3.follow()
-#         #print(res4.body)
-#         self.failUnless(
-#             'Dashboard' in res4.body)
-#         # now that we are logged in,
-#         # the login view should redirect us to the dashboard
-#         res5 = self.testapp.get('/login', status=302)
-#         # so yes: that was a redirect
-#         res6 = res5.follow()
-#         #print(res4.body)
-#         self.failUnless(
-#             'Dashboard' in res6.body)
-#         # choose number of applications shown
-#         res6a = self.testapp.get(
-#             '/dashboard/0',
-#             status=200,
-#             extra_environ={
-#                 'num_display': '30',
-#             }
-#         )
+            'Dashboard' in res4.body)
+        # now that we are logged in,
+        # the login view should redirect us to the dashboard
+        res5 = self.testapp.get('/login', status=302)
+        # so yes: that was a redirect
+        res6 = res5.follow()
+        #print(res4.body)
+        self.failUnless(
+            'Dashboard' in res6.body)
+        # choose number of applications shown
+        res6a = self.testapp.get(
+            '/dashboard/0',
+            status=200,
+            extra_environ={
+                'num_display': '30',
+            }
+        )
 #         #print('res6a:')
 #         #print res6a
-#         self.failUnless('<h1>Dashboard</h1>' in res6a.body)
-#         res6a = self.testapp.get(
-#             '/dashboard/1', status=200,
-#         )
+        self.failUnless('<h1>Dashboard</h1>' in res6a.body)
+        res6a = self.testapp.get(
+            '/dashboard/1', status=200,
+        )
 #         #print('res6a:')
 #         #print res6a
 #         self.failUnless('<h1>Dashboard</h1>' in res6a.body)
@@ -195,54 +273,10 @@ class FunctionalTests(unittest.TestCase):
 #         res10 = res9.follow()
 #         self.failUnless('login' in res10.body)
 #         # def test_detail_wrong_id(self):
-
-
-# class FunctionalTests(unittest.TestCase):
-#     """
-#     these tests are functional tests to check functionality of the whole app
-#     (i.e. integration tests)
-#     they also serve to get coverage for 'main'
-#     """
-#     def setUp(self):
-#         self.config = testing.setUp()
-#         self.config.include('pyramid_mailer.testing')
-#         DBSession.remove()
-#         self.session = _initTestingDB()
-#         my_settings = {'sqlalchemy.url': 'sqlite:///c3sMembership.db',
-#                        'available_languages': 'da de en es fr',
-#                        'c3smembership.mailaddr': 'c@c3s.cc'}
-#         #my_other_settings = {'sqlalchemy.url': 'sqlite:///test.db',
-#         #                     'available_languages': 'da de en es fr'}
-#                         # mock, not even used!?
-#         #from sqlalchemy import engine_from_config
-#         #engine = engine_from_config(my_settings)
-#         from c3smembership.scripts.initialize_db import init
-#         init()
-
-#         from c3smembership import main
-#         #try:
-#         app = main({}, **my_settings)
-#         #except:
-#         #    app = main({}, **my_other_settings)
-#         #    pass
-#         from webtest import TestApp
-#         self.testapp = TestApp(app)
-#
-#     def tearDown(self):
-#         # maybe I need to check and remove globals here,
-#         # so the other tests are not compromised
-#         #del engine
-#         from c3smembership.models import DBSession
-#         #DBSession.remove()
-#         DBSession.close()
-#         #TODO: delete database
-#         DBSession.remove()
-#         #import pdb; pdb.set_trace()
-
     def test_base_template(self):
         """load the front page, check string exists"""
         res = self.testapp.get('/', status=200)
-        self.failUnless('Cultural Commons Collecting Society' in res.body)
+        self.failUnless('C3S SCE' in res.body)
         self.failUnless(
             'Copyright 2013, C3S SCE' in res.body)
 
@@ -259,7 +293,7 @@ class FunctionalTests(unittest.TestCase):
         res = self.testapp.reset()  # delete cookie
         res = self.testapp.get('/?_LOCALE_=en', status=200)
         self.failUnless(
-            'Speedfund the Cultural' in res.body)
+            'Speedfund the C3S' in res.body)
 
     def test_lang_en(self):
         """load the front page, set to english (w/ pretty query string),
@@ -270,7 +304,7 @@ class FunctionalTests(unittest.TestCase):
         # we are being redirected...
         res1 = res.follow()
         self.failUnless(
-            'Speedfund the Cultural Commons' in res1.body)
+            'Speedfund the C3S' in res1.body)
 
 # so let's test the app's obedience to the language requested by the browser
 # i.e. will it respond to http header Accept-Language?
@@ -296,7 +330,7 @@ class FunctionalTests(unittest.TestCase):
                 'Accept-Language': 'de-DE'})
         #print(res.body) #  if you want to see the pages source
         self.failUnless(
-            'Mitgliedschaftsantrag für die' in res.body)
+            'Speedfund the C3S' in res.body)
         self.failUnless(
             '<input type="hidden" name="_LOCALE_" value="de"' in res.body)
 
@@ -343,7 +377,7 @@ class FunctionalTests(unittest.TestCase):
             headers={
                 'Accept-Language': 'af, cn'})  # ask for missing languages
         #print res.body
-        self.failUnless('Speedfund the Cultural Commons' in res.body)
+        self.failUnless('Speedfund the C3S' in res.body)
 
 #############################################################################
 # check for validation stuff
@@ -362,7 +396,7 @@ class FunctionalTests(unittest.TestCase):
             'There was a problem with your submission' in res2.body)
 
     def test_form_lang_de(self):
-        """load the join form, check german string exists"""
+        """load the form, check german string exists"""
         res = self.testapp.get('/?de', status=302)
         #print(res)
         self.failUnless('The resource was found at' in res.body)
@@ -371,65 +405,67 @@ class FunctionalTests(unittest.TestCase):
         #print(res2)
         # test for german translation of template text (lingua_xml)
         self.failUnless(
-            'Speedfunde die Cultural Commons' in res2.body)
+            'Speedfund the C3S' in res2.body)
         # test for german translation of form field label (lingua_python)
         self.failUnless('PayPal' in res2.body)
 
     def test_form_lang_LOCALE_de(self):
-        """load the join form in german, check german string exists
+        """load the form in german, check german string exists
         this time forcing german locale the pyramid way
         """
         res = self.testapp.get('/?_LOCALE_=de', status=200)
         # test for german translation of template text (lingua_xml)
         self.failUnless(
-            'Speedfunde die Cultural Commons' in res.body)
+            'Speedfund the C3S' in res.body)
         # test for german translation of form field label (lingua_python)
         self.failUnless('PayPal' in res.body)
 
 ###########################################################################
 # checking the success page that sends out email with verification link
 
-    def test_check_email_en_wo_context(self):
-        """try to access the 'check_email' page and be redirected
-        check english string exists"""
-        res = self.testapp.reset()
-        res = self.testapp.get('/check_email?en', status=302)
-        self.failUnless('The resource was found at' in res.body)
-        # we are being redirected...
-        res1 = res.follow()
-        #print(res1)
-        self.failUnless(
-            'Application for Membership of ' in str(
-                res1.body),
-            'expected string was not found in web UI')
+    # def test_check_email_en_wo_context(self):
+    #     """try to access the 'check_email' page and be redirected
+    #     check english string exists"""
+    #     res = self.testapp.reset()
+    #     res = self.testapp.get('/check_email?en', status=302)
+    #     self.failUnless('The resource was found at' in res.body)
+    #     # we are being redirected...
+    #     res1 = res.follow()
+    #     #print(res1)
+    #     self.failUnless(
+    #         'Application for Membership of ' in str(
+    #             res1.body),
+    #         'expected string was not found in web UI')
 
 ###########################################################################
 # checking the view that gets code and mail, asks for a password
-    def test_verify_email_en_w_bad_code(self):
-        """load the page in english,
-        be redirected to the form (data is missing)
-        check english string exists"""
-        res = self.testapp.reset()
-        res = self.testapp.get('/verify/foo@shri.de/ABCD-----', status=200)
-        self.failUnless(
-            'Password' in res.body)
-        form = res.form
-        form['password'] = 'foobar'
-        res2 = form.submit('submit')
-        self.failUnless(
-            'Password' in res2.body)
+    # def test_verify_email_en_w_bad_code(self):
+    #     """load the page in english,
+    #     be redirected to the form (data is missing)
+    #     check english string exists"""
+    #     res = self.testapp.reset()
+    #     res = self.testapp.get('/verify/foo@shri.de/ABCD-----', status=200)
+    #     self.failUnless(
+    #         'Password' in res.body)
+    #     form = res.form
+    #     form['password'] = 'foobar'
+    #     res2 = form.submit('submit')
+    #     self.failUnless(
+    #         'Password' in res2.body)
 
-    def test_verify_email_en_w_good_code(self):
-        """
-        check english string exists"""
-        res = self.testapp.reset()
-        res = self.testapp.get('/verify/foo@shri.de/ABCDEFGHIJ', status=200)
-        self.failUnless(
-            'Password' in res.body)
-        form = res.form
-        form['password'] = 'berries'
-        res2 = form.submit('submit')
-        self.failUnless('C3S_SCE_AFM_Firstn_meLastname.pdf' in res2.body)
+    # def test_verify_email_en_w_good_code(self):
+    #     """
+    #     check english string exists"""
+    #     res = self.testapp.reset()
+    #     res = self.testapp.get('/verify/foo@shri.de/ABCDEFGHIJ', status=200)
+    #     self.failUnless(
+    #         'Password' in res.body)
+    #     form = res.form
+    #     form['password'] = 'berries'
+    #     res2 = form.submit('submit')
+    #     self.failUnless('C3S_SCE_AFM_Firstn_meLastname.pdf' in res2.body)
+
+
 #        import pdb
 #        pdb.set_trace()
             #'Your Email has been confirmed, Firstnäme Lastname!' in res.body)
@@ -484,37 +520,37 @@ class FunctionalTests(unittest.TestCase):
     #             res.body),
     #         'expected string was not found in web UI')
 
-    def test_success_wo_data_en(self):
-        """load the success page in english (via query_string),
-        check for redirection and english string exists"""
-        res = self.testapp.reset()
-        res = self.testapp.get('/success?en', status=302)
-        self.failUnless('The resource was found at' in res.body)
-        # we are being redirected...
-        res1 = res.follow()
-        #print(res1)
-        self.failUnless(  # check text on page redirected to
-            'Please fill out the form' in str(
-                res1.body),
-            'expected string was not found in web UI')
+    # def test_success_wo_data_en(self):
+    #     """load the success page in english (via query_string),
+    #     check for redirection and english string exists"""
+    #     res = self.testapp.reset()
+    #     res = self.testapp.get('/success?en', status=302)
+    #     self.failUnless('The resource was found at' in res.body)
+    #     # we are being redirected...
+    #     res1 = res.follow()
+    #     #print(res1)
+    #     self.failUnless(  # check text on page redirected to
+    #         'Please fill out the form' in str(
+    #             res1.body),
+    #         'expected string was not found in web UI')
 
-    def test_success_pdf_wo_data_en(self):
-        """
-        try to load a pdf (which must fail because the form was not used)
-        check for redirection to the form and test string exists
-        """
-        res = self.testapp.reset()
-        res = self.testapp.get(
-            '/C3S_SCE_AFM_ThefirstnameThelastname.pdf',
-            status=302)
-        self.failUnless('The resource was found at' in res.body)
-        # we are being redirected...
-        res1 = res.follow()
-        #print(res1)
-        self.failUnless(  # check text on page redirected to
-            'Please fill out the form' in str(
-                res1.body),
-            'expected string was not found in web UI')
+    # def test_success_pdf_wo_data_en(self):
+    #     """
+    #     try to load a pdf (which must fail because the form was not used)
+    #     check for redirection to the form and test string exists
+    #     """
+    #     res = self.testapp.reset()
+    #     res = self.testapp.get(
+    #         '/C3S_SCE_AFM_ThefirstnameThelastname.pdf',
+    #         status=302)
+    #     self.failUnless('The resource was found at' in res.body)
+    #     # we are being redirected...
+    #     res1 = res.follow()
+    #     #print(res1)
+    #     self.failUnless(  # check text on page redirected to
+    #         'Please fill out the form' in str(
+    #             res1.body),
+    #         'expected string was not found in web UI')
 
     # def test_success_w_data(self):
     #     """
@@ -647,51 +683,51 @@ class FunctionalTests(unittest.TestCase):
     #     form = res3.form
     #     self.failUnless(form['firstname'].value == u'TheFirstNäme')
 
-    def test_email_confirmation(self):
-        """
-        test email confirmation
-        """
-        res = self.testapp.reset()
-        res = self.testapp.get('/verify/foo@shri.de/ABCDEFGHIJ', status=200)
-        # print(res.body)
-        form = res.form
-        form['password'] = 'berries'
-        res2 = form.submit('submit')
-        #print res2.body
-        self.failUnless("Load your PDF..." in res2.body)
-        res3 = self.testapp.get(
-            '/C3S_SCE_AFM_ThefirstnameThelastname.pdf',
-            status=200
-        )
-        #print("length of result: %s") % len(res2.body)
-        self.failUnless(80000 < len(res3.body) < 100000)  # check pdf size
+    # def test_email_confirmation(self):
+    #     """
+    #     test email confirmation
+    #     """
+    #     res = self.testapp.reset()
+    #     res = self.testapp.get('/verify/foo@shri.de/ABCDEFGHIJ', status=200)
+    #     # print(res.body)
+    #     form = res.form
+    #     form['password'] = 'berries'
+    #     res2 = form.submit('submit')
+    #     #print res2.body
+    #     self.failUnless("Load your PDF..." in res2.body)
+    #     res3 = self.testapp.get(
+    #         '/C3S_SCE_AFM_ThefirstnameThelastname.pdf',
+    #         status=200
+    #     )
+    #     #print("length of result: %s") % len(res2.body)
+    #     self.failUnless(80000 < len(res3.body) < 100000)  # check pdf size
 
-    def test_email_confirmation_wrong_mail(self):
-        """
-        test email confirmation with a wrong email
-        """
-        res = self.testapp.reset()
-        res = self.testapp.get(
-            '/verify/NOTEXISTS@shri.de/ABCDEFGHIJ', status=200)
-        #print(res.body)
-        self.failUnless("Please enter your password." in res.body)
+    # def test_email_confirmation_wrong_mail(self):
+    #     """
+    #     test email confirmation with a wrong email
+    #     """
+    #     res = self.testapp.reset()
+    #     res = self.testapp.get(
+    #         '/verify/NOTEXISTS@shri.de/ABCDEFGHIJ', status=200)
+    #     #print(res.body)
+    #     self.failUnless("Please enter your password." in res.body)
 
-    def test_email_confirmation_wrong_code(self):
-        """
-        test email confirmation with a wrong code
-        """
-        res = self.testapp.reset()
-        res = self.testapp.get('/verify/foo@shri.de/WRONGCODE', status=200)
-        #print(res.body)
-        self.failUnless("Please enter your password." in res.body)
+    # def test_email_confirmation_wrong_code(self):
+    #     """
+    #     test email confirmation with a wrong code
+    #     """
+    #     res = self.testapp.reset()
+    #     res = self.testapp.get('/verify/foo@shri.de/WRONGCODE', status=200)
+    #     #print(res.body)
+    #     self.failUnless("Please enter your password." in res.body)
 
-    def test_success_check_email(self):
-        """
-        test "check email" success page with wrong data:
-        this should redirect to the form.
-        """
-        res = self.testapp.reset()
-        res = self.testapp.get('/check_email', status=302)
+    # def test_success_check_email(self):
+    #     """
+    #     test "check email" success page with wrong data:
+    #     this should redirect to the form.
+    #     """
+    #     res = self.testapp.reset()
+    #     res = self.testapp.get('/check_email', status=302)
 
-        res2 = res.follow()
-        self.failUnless("Please fill out the form" in res2.body)
+    #     res2 = res.follow()
+    #     self.failUnless("Please fill out the form" in res2.body)

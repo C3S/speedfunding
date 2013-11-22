@@ -210,7 +210,10 @@ def speedfunding_view(request):
     except TypeError, t:
         print("the error: %s" % t)
         #import pdb; pdb.set_trace()
-        _missing_sum = "n.a.N"
+        _missing_sum = "70000"
+    except AttributeError, a:
+        print("the error: %s" % a)
+        _missing_sum = "70000"
 
     return {'form': html,
             'the_total': '12.345,67',
@@ -364,6 +367,7 @@ def donate_view(request):
             }
 
         #print("the appstruct: %s" % appstruct)
+        request.session.pop_flash()  # delete old error messages
         return HTTPFound(
             location=request.route_url('success'),
         )
@@ -557,6 +561,7 @@ def shirt_view(request):
 
         # if the form validated correctly, use the data given
         #print("the appstruct: %s" % appstruct)
+        request.session.pop_flash()  # delete old error messages
         return HTTPFound(
             location=request.route_url('success'),  # XXX transport info there
         )
