@@ -4,11 +4,16 @@ speedfunding README
 Getting Started
 ---------------
 
-- cd <directory containing this file>
+- git clone https://github.com/C3S/speedfunding.git
 
-- $VENV/bin/python setup.py develop
+- cd speedfunding
 
-- $VENV/bin/initialize_speedfunding_db development.ini
+- virtualenv env
 
-- $VENV/bin/pserve development.ini
+- env/bin/python setup.py develop
 
+- env/bin/initialize_speedfunding_db development.ini
+
+- env/bin/pserve development.ini --reload
+
+Look at ci.sh, a script that does all that.
