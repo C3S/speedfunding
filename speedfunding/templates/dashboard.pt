@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal">
+  <head>
+    <title i18n:translate="speedfunding-form-title">Speedfund C3S</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <meta name="keywords" content="Membership Application to join C3S SCE" />
+    <meta name="description" content="" />
+    <link rel="shortcut icon" href="${request.static_url('speedfunding:static/favicon.ico')}" />
+    <link rel="stylesheet" href="${request.static_url('speedfunding:static/pylons.css')}" type="text/css" media="screen" charset="utf-8" />
+    <tal:block metal:define-slot="deform-js-css"></tal:block>
+    <!--[if lte IE 6]>
+        <link rel="stylesheet" href="${request.static_url('speedfunding:static/ie6.css')}"
+	      type="text/css" media="screen" charset="utf-8" />
+        <![endif]-->
+  </head>
+  <body>
+    <div id="wrap">
+      <div id="main">
+        <h1>Dashboard</h1>  
+        <p>Number of data sets: ${_number_of_datasets}</p>
+        <p>Find entry by confirmation code:
+          <form action="${request.route_url('dashboard', number=0)}" method="post">
+            <input name="code_to_show" type="text"
+                   size="10" maxlength="10"
+                   value=""/>
+          </form>
+        </p>
+
+        <p>
+          <a href="${request.route_url('dashboard', number=previous)}">&lt;previous</a>
+          <a href="${request.route_url('dashboard', number=next)}">next&gt;</a>
+        </p>
+        <table border="1" cellpadding="10" width="90%">
+	  <tr>
+            <td>id</td>
+            <td>code</td>
+            <td>firstname</td>
+            <td>lastname</td>
+            <td>email</td>
+            <td>donation</td>
+            <td>shirt_size</td>
+            <td>payment<br />received?</td>
+            <td>edit</td>
+            <td>delete</td>
+          </tr>
+	  <tr tal:repeat="speedfunding speedfundings">
+	    <td><a href="/detail/${speedfunding.id}">${speedfunding.id}</a></td>
+	    <td><a href="/detail/${speedfunding.id}">${speedfunding.speed_id}</a></td>
+	    <td>${speedfunding.firstname}</td>
+	    <td>${speedfunding.lastname}</td>
+	    <td><a href="mailto:${speedfunding.email}">${speedfunding.email}</a></td>
+	    <td>${speedfunding.donation}</td>
+	    <td>${speedfunding.shirt_size}</td>
+	    <td>
+              <div tal:condition="not speedfunding.payment_received">
+                <a href="${request.route_url('switch_pay', speed_id=speedfunding.id)}">
+                  <img src="${request.static_url('speedfunding:static/flash_red.gif')}" width="20px" height="20px" />
+                </a>
+              </div>
+              <div tal:condition="speedfunding.payment_received">
+                <a href="${request.route_url('switch_pay', speed_id=speedfunding.id)}">
+                  <img src="${request.static_url('speedfunding:static/green.png')}"
+		       title="${speedfunding.payment_received_date}"
+		       width="20px" height="20px" />
+                </a>
+              </div>
+            </td>
+	    <td><a href="/detail/${speedfunding.id}">edit</a></td>
+	    <td><a href="/delete/${speedfunding.id}">delete</a></td>
+	  </tr>
+        </table>
+	<!-- NEXT PREVIOUS -->
+        <p>
+          <a href="${request.route_url('dashboard', number=previous)}">&lt;previous</a>
+          <a href="${request.route_url('dashboard', number=next)}">next&gt;</a>
+        </p>
+        <p>Showing (up to) ${num_display} at a time. Change to
+          <form action="${request.route_url('dashboard', number=0)}" method="post">
+            <input name="num_to_show" type="text"
+                   size="3" maxlength="3"
+                   value="${num_display}"/>
+          </form>
+        </p>
+        <p>
+          Please <a href="${request.route_url('logout')}">log out</a>
+          when you are done.
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

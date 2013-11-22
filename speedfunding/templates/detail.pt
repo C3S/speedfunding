@@ -1,0 +1,78 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      metal:use-macro="base">
+  <!-- metal : use-macro="loggedinpt" -->
+
+  <tal:block metal:fill-slot="bottom">
+    <div id="main">
+      <p>
+        Please <a href="${request.route_url('logout')}">log out</a>
+        when you are done.
+        Or go <a href="${request.route_url('dashboard', number=0)}">back to dashboard</a>.
+      </p>
+
+      <h1>Details for Entry #${speedfunding.id}</h1>
+
+      <table border="1" cellpadding="10" width="90%">
+	<tr>
+          <td>speed_id</td>
+	  <td>${speedfunding.speed_id}</td>
+        </tr>
+	<tr>
+          <td>firstname</td>
+	  <td>${speedfunding.firstname}</td>
+        </tr>
+	<tr>
+          <td>lastname</td>
+	  <td>${speedfunding.lastname}</td>
+        </tr>
+	<tr>
+          <td>email</td>
+	  <td><a href="mailto:${speedfunding.email}">${speedfunding.email}</a></td>
+        </tr>
+	<tr>
+          <td>address1</td>
+	  <td>${speedfunding.address1}</td>
+        </tr>
+	<tr>
+          <td>address2</td>
+	  <td>${speedfunding.address2}</td>
+        </tr>
+	<tr>
+          <td>postcode</td>
+	  <td>${speedfunding.postcode}</td>
+        </tr>
+	<tr>
+          <td>city</td>
+	  <td>${speedfunding.city}</td>
+        </tr>
+	<tr>
+          <td>country</td>
+	  <td>${speedfunding.country}</td>
+        </tr>
+	<tr>
+          <td>size_of_shirt</td>
+	  <td>${speedfunding.shirt_size}</td>
+        </tr>
+	<tr>
+          <td>donation</td>
+	  <td>${speedfunding.donation}</td>
+        </tr>
+	<tr>
+          <td>payment received?</td><td>${speedfunding.payment_received or "No"}</td>
+        </tr>
+      </table>
+
+      <div id="form" tal:content="structure form"/>
+
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+    </div>
+  </tal:block>
+  <tal:block metal:fill-slot="deform-load">
+    <!--! loading deform -->
+    <script type="text/javascript">deform.load()</script>
+  </tal:block>
+</html>

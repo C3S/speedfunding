@@ -8,34 +8,42 @@
   <tal:block metal:fill-slot="deform-js-css">
     <link rel="stylesheet" href="${request.static_url('speedfunding:static/deform/form.css')}" type="text/css" media="screen" charset="utf-8" />
     <!-- script type="text/javascript" src="/static/jquery-1.10.2.min.js"></script -->
-    <script type="text/javascript" src="/static/deform/deform.js"></script>
+    <!-- script type="text/javascript" src="/static/deform/deform.js"></script -->
     <!-- script src="http://code.jquery.com/jquery-1.9.1.js" --><!-- /script -->
     <!-- link rel="stylesheet" href="/static/jquery-ui.1.10.3-smoothness.css" / -->
-    <script src="/static/jquery-ui.1.10.3.js"></script>
-    <!-- link rel="stylesheet" href="${request.static_url('speedfunding:static/c3sM.css')}" type="text/css" media="screen" charset="utf-8" / -->
+    <!-- script src="/static/jquery-ui.1.10.3.js"></script -->
+    <link rel="stylesheet" href="${request.static_url('speedfunding:static/c3sM.css')}" type="text/css" media="screen" charset="utf-8" />
   </tal:block>
   <tal:block metal:fill-slot="middle">
-    <h1 i18n:translate="speedfund-form-title">Speedfund the Cultural Commons Collecting Society (C3S)</h1>
+    <div class="jumbotron">
+      <h1 i18n:translate="speedfund-form-title">Speedfund the C3S!</h1>
+    </div>
+      <p class="lead" i18n:translate="speedfund-help-us">
+	Help us make ends meet. Now! 
+      </p>
+      <hr />
   </tal:block>
   <tal:block metal:fill-slot="bottom">
-    <div style="text-align:left;">
-      <strong style="color:red;" tal:repeat="message request.session.peek_flash('message_above_form')">
-	${message}
-      </strong>
-    </div> &nbsp;
     <div style="text-align:right;">
       <a href="/?en"><img src="static/images/en.png" title="English"
 			  alt="switch to English language" /></a>
       <a href="/?de"><img src="static/images/de.png" title="Deutsch"
 			  alt="auf deutsche Sprache umschalten" /></a>
     </div>
-    <!-- Jumbotron -->
-    <div class="jumbotron">
-      <h1>The Options</h1>
-      <p class="lead">We have three options for you to choose from.
-        Of course, you may choose more often and use the form again and again :-)
+    <div class="row-fluid">
+      <h2 i18n:translate='the-status'>The Current Status</h2>
+      <p>
+	<span i18n:translate='the-status-span-1'>There are</span>&nbsp;${missing_sum} &euro; 
+	<span i18n:translate='the-status-span-2'>missing of</span>&nbsp;  70.000,00 &euro; 
+	<span i18n:translate='the-status-span-3'>needed</span>.
       </p>
-      <!-- a class="btn btn-large btn-success" href="#">Yes!</a -->
+    <hr />
+
+    <div style="text-align:left;">
+      <h2 i18n:translate='the-options-h2'>The Options</h2>
+      <p class="lead" i18n:translate='the-options-p1'>We have three options for you to choose from.
+	The most preferred selections from our crowdfunding. Of course, you can come back more often than once.
+      </p>
     </div>
     
     <hr />
@@ -44,27 +52,30 @@
     <div class="row-fluid">
       <div class="span4">
         <h2 i18n:translate='donate-money-heading'>Donate Money</h2>
-        <p i18n:translate='donate-money-paragraph'>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
+        <p i18n:translate='donate-money-paragraph'>We are glad for any amount!
         </p>
-        <!--p><a class="btn" href="#">View details &raquo;</a></p -->
+        <p><a class="btn btn-large btn-success" href="/donate">Donate by money transfer &raquo;</a></p>
+	<p><a class="btn btn-large btn-warning" href="/donate?paypal">Donate via PayPal &raquo;</a></p>
       </div>
       <div class="span4">
-        <h2 i18n:translate='tshirt-heading'>Get a T-Shirt</h2>
+        <h2 i18n:translate='tshirt-heading'>Grab a T-Shirt</h2>
         <p i18n:translate='tshirt-paragraph'>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
         </p>
-        <!-- p><a class="btn" href="#">View details &raquo;</a></p -->
+        <p><a class="btn btn-large btn-success" href="/shirt">Pay by money transfer &raquo;</a></p>
+        <p><a class="btn btn-large btn-warning" href="/shirt?paypal">Pay via PayPal &raquo;</a></p>
       </div>
       <div class="span4">
         <h2 i18n:translate='shares-heading'>Buy Shares</h2>
         <p i18n:translate='shares-paragraph'>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa.
         </p>
-        <!-- p><a class="btn" href="#">View details &raquo;</a></p -->
+        <p><a class="btn btn-large btn-success" href="https://yes.c3s.cc">Yes, Shares! &raquo;</a></p>
       </div>
     </div>
     
     <hr />
     
     <h2 i18n:translate="speedfund-form-headline" class="deform">Your help is needed immediately!</h2>
+    <!-- 
     <p i18n:translate="join-form-fill-verify-print-send">
       Please pick an option that suits you best.
     </p>
@@ -74,8 +85,9 @@
       we need to collect some basic information.
     </p>
     <!-- the form (is constructed in the view speedfunding_view -->
-    <div id="form" tal:content="structure form"/>
-    
+    <!-- div id="form" tal:content="structure form"/>
+    -->
+
   </tal:block>
   <tal:block metal:fill-slot="deform-load">
     <!--! loading deform -->

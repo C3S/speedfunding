@@ -1,4 +1,9 @@
-# _*_ coding: utf-8 _*_
+# -*- coding: utf-8 -*-
+
+from speedfunding.models import (
+    Speedfundings,
+    TheTotal,
+)
 
 #from pyramid.response import Response
 from pyramid.view import view_config
@@ -198,7 +203,17 @@ def speedfunding_view(request):
     # if not submitted: show form
     html = form.render()
 
+    _the_total = TheTotal.get_total()
+    try:
+        _missing_sum = 70000 - int(_the_total.amount_actual)
+    except TypeError, t:
+        print("the error: %s" % t)
+        #import pdb; pdb.set_trace()
+        _missing_sum = "n.a.N"
+
     return {'form': html,
+            'the_total': '12.345,67',
+            'missing_sum': _missing_sum,
             'project': 'speedfunding'}
 
 
@@ -252,8 +267,8 @@ def donate_view(request):
             colander.String(),
             title=_(u'I want to say thanks with money. I donate:'),
             default='1',  # default: '1' ==> '5€'
-            #widget=deform.widget.SelectWidget(
-            widget=deform.widget.SelectSliderWidget(
+            widget=deform.widget.SelectWidget(
+            #widget=deform.widget.SelectSliderWidget(
                 values=donation_amount_choice),
             #    values=(('a', 'foo'), ('b', 'bar'))
             #),

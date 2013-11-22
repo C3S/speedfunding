@@ -4,3 +4,4 @@ bin/*
 *.egg-info/
 .coverage
 env/
+*.sqlite
