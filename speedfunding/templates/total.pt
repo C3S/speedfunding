@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="speedfunding">
+      <!-- metal:use-macro="base" -->
+
+  <head>
+    <title>Speedfunding Total</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <meta name="keywords" content="Membership Application to join C3S SCE" />
+    <meta name="description" content="" />
+    <link rel="shortcut icon" href="${request.static_url('speedfunding:static/favicon.ico')}" />
+    <!-- link rel="stylesheet" href="${request.static_url('speedfunding:static/pylons.css')}" type="text/css" media="screen" charset="utf-8" / -->
+    <tal:block metal:define-slot="deform-js-css"></tal:block>
+    <!--[if lte IE 6]>
+        <link rel="stylesheet" href="${request.static_url('speedfunding:static/ie6.css')}"
+	      type="text/css" media="screen" charset="utf-8" />
+        <![endif]-->
+  </head>
+  <body>
+    <div id="wrap">
+      <div id="main">
+        <h1>Set Total</h1>  
+        <p>
+          <div id="form" tal:content="structure form"/>
+        </p>
+      </div>
+      <div>
+        <table border="1" cellpadding="10" width="90%">
+          <tr>
+            <td>id</td>
+            <td>the sum</td>
+            <td>promised sum</td>
+            <td>num shirts</td>
+            <td>email</td>
+          </tr>
+          <tr tal:repeat="total totals">
+            <td>${total.id}</td>
+            <td>${total.amount_actual}</td>
+            <td>${total.amount_promised}</td>
+            <td>${total.num_shirts}</td>
+            <td>${total.time}</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>
