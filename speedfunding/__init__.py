@@ -1,6 +1,16 @@
 from pyramid.config import Configurator
 from pyramid_beaker import session_factory_from_settings
 
+from speedfunding.security.request import RequestWithUserAttribute
+from speedfunding.security  import (
+    Root,
+    groupfinder
+)
+from pyramid_beaker import session_factory_from_settings
+from pyramid.authentication import AuthTktAuthenticationPolicy
+from pyramid.authorization import ACLAuthorizationPolicy
+
+
 from sqlalchemy import engine_from_config
 
 from .models import (
@@ -12,14 +22,26 @@ from .models import (
 def main(global_config, **settings):
     """ This function returns a Pyramid WSGI application.
     """
+    # database
     engine = engine_from_config(settings, 'sqlalchemy.')
     session_factory = session_factory_from_settings(settings)
-
     DBSession.configure(bind=engine)
     Base.metadata.bind = engine
+    # sessioning
+    authn_policy = AuthTktAuthenticationPolicy(
+        's0secret!!',
+        callback=groupfinder,)
+    authz_policy = ACLAuthorizationPolicy()
+    # config
     config = Configurator(settings=settings,
+                          authentication_policy=authn_policy,
+                          authorization_policy=authz_policy,
+                          root_factory=Root,
                           session_factory=session_factory,)
-    config.include('pyramid_chameleon')
+    # using a custom request with user information
+    config.set_request_factory(RequestWithUserAttribute)
+    config.include('pyramid_chameleon')  # templating
+    config.include('pyramid_mailer')  # mailings
     config.add_static_view('static_deform', 'deform:static')
     config.add_subscriber('speedfunding.subscribers.add_base_template',
                           'pyramid.events.BeforeRender')
