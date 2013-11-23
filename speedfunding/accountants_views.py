@@ -64,7 +64,8 @@ if LOGGING:  # pragma: no cover
              route_name='total')
 def new_total(request):
     """
-    This view lets accountants set the amount collected:
+    This view lets accountants set the amount collected
+    to be displayed on the front page
     """
 
     class NewTotal(colander.MappingSchema):
@@ -241,8 +242,9 @@ def accountants_login(request):
 def accountants_desk(request):
     """
     This view lets accountants view applications and set their status:
-    has their signature arrived? how about the payment?
+    has their payment arrived?
     """
+    #print("who is it? %s" % request.user.login)
     _number_of_datasets = Speedfundings.get_number()
     #print("request.matchdict['number']: %s" % request.matchdict['number'])
     try:  # check if
@@ -487,33 +489,26 @@ def speedfunding_detail(request):
                 allow_duplicate=False)
             return{'form': e.render()}
 
-        # change info about speedfunding in database
-
-        test1 = (  # changed value through form (different from db)?
-            appstruct[
-                'signature_received'
-            ] == _speedfunding.signature_received)
-        if not test1:
-            log.info(
-                "info about signature of %s changed by %s to %s" % (
-                    _speedfunding.id,
-                    request.user.login,
-                    appstruct['signature_received']))
-            _speedfunding.signature_received = appstruct['signature_received']
-        test2 = (  # changed value through form (different from db)?
+        # change info about speedfunding in database ?
+        same = (  # changed value through form (different from db)?
             appstruct['payment_received'] == _speedfunding.payment_received)
-        if not test2:
+        if not same:
             log.info(
                 "info about payment of %s changed by %s to %s" % (
                     _speedfunding.id,
                     request.user.login,
                     appstruct['payment_received']))
             _speedfunding.payment_received = appstruct['payment_received']
+            if _speedfunding.payment_received is True:
+                _speedfunding.payment_received_date = datetime.now()
+            else:
+                _speedfunding.payment_received_date = datetime(
+                    1970, 1, 1)
         # store appstruct in session
         request.session['appstruct'] = appstruct
 
         # show the updated details
-        HTTPFound(route_url('detail', request, speedfundingid=speedfundingid))
+        HTTPFound(route_url('detail', request, speed_id=_speedfunding.id))
 
     # else: form was not submitted: just show speedfunding info and form
     else:

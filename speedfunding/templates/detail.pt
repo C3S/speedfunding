@@ -15,7 +15,7 @@
 
       <h1>Details for Entry #${speedfunding.id}</h1>
 
-      <table border="1" cellpadding="10" width="90%">
+      <table border="1" cellpadding="1">
 	<tr>
           <td>speed_id</td>
 	  <td>${speedfunding.speed_id}</td>
@@ -53,6 +53,10 @@
 	  <td>${speedfunding.country}</td>
         </tr>
 	<tr>
+          <td>locale</td>
+	  <td>${speedfunding.locale}</td>
+        </tr>
+	<tr>
           <td>size_of_shirt</td>
 	  <td>${speedfunding.shirt_size}</td>
         </tr>
@@ -61,13 +65,36 @@
 	  <td>${speedfunding.donation}</td>
         </tr>
 	<tr>
+          <td>date of submission</td>
+	  <td>${speedfunding.date_of_submission}</td>
+        </tr>
+	<tr>
           <td>payment received?</td><td>${speedfunding.payment_received or "No"}</td>
+        </tr>
+	<tr>
+          <td>payment received date</td>
+	  <td>${speedfunding.payment_received_date}</td>
         </tr>
       </table>
 
       <div id="form" tal:content="structure form"/>
 
-      <p>&nbsp;</p>
+      <p>
+        <h4>payment options/keys</h4>
+        <table border="1">
+          <tr><td>1</td><td>5 &euro;</td></tr>
+          <tr><td>2</td><td>10 &euro;</td></tr>
+          <tr><td>3</td><td>25 &euro;</td></tr>
+          <tr><td>4</td><td>50 &euro;</td></tr>
+          <tr><td>5</td><td>100 &euro;</td></tr>
+          <tr><td>6</td><td>250 &euro;</td></tr>
+          <tr><td>7</td><td>500 &euro;</td></tr>
+          <tr><td>8</td><td>1000 &euro;</td></tr>
+          <tr><td>9</td><td>2500 &euro;</td></tr>
+          <tr><td>10</td><td>1000 &euro;</td></tr>
+        </table>
+
+      </p>
       <p>&nbsp;</p>
     </div>
   </tal:block>
