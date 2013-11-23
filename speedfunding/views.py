@@ -249,6 +249,7 @@ def donate_view(request):
     }
 
     if 'paypal' in request.params:
+        request.session.pop_flash('message_above_form')
         return {
             'form': '',  # if paypal was chosen, don't show the form
             'paypal': True}  # but the paypal button (see templates/donate.pt)
@@ -323,6 +324,9 @@ def donate_view(request):
     # if the form has been used and SUBMITTED, check contents
     submitted = (('donate' in request.POST) or ('go_back' in request.POST))
 
+    if not submitted:
+        request.session.pop_flash('message_above_form')
+
     if submitted:
         if ('go_back' in request.POST):
             return HTTPFound(
@@ -390,6 +394,7 @@ def shirt_view(request):
 
     if 'paypal' in request.params:
         #print("paypal option")
+        request.session.pop_flash('message_above_form')
         return {
             'form': '',  # if paypal was chosen, don't show the form
             'paypal': True}  # but the paypal button (see templates/shirt.pt)
@@ -516,6 +521,9 @@ def shirt_view(request):
     # if the form has been used and SUBMITTED, check contents
     submitted = (('order_shirt' in request.POST)
                  or ('go_back' in request.POST))
+
+    if not submitted:
+        request.session.pop_flash('message_above_form')
 
     if submitted:
         if ('go_back' in request.POST):
