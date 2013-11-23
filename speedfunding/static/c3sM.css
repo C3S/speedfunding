@@ -13,7 +13,9 @@ body{
     border-top: 0;
     border-bottom: 0;
 }
-
+#top-align-center{
+    text-align: center;
+}
 
 /* the form */
 
@@ -125,16 +127,24 @@ body {
 body {
     padding-top: 20px;
     padding-bottom: 60px;
+    margin-left: 30px;
+    margin-right: 30px;
 }
 
 /* Custom container */
 .container {
-    margin: 0 auto;
+    margin: 30px auto;
     max-width: 1000px;
 }
 .container > hr {
     margin: 60px 0;
 }
+#slider-div-donation_choice {
+    background-color:#4dbd38;
+    width:60%;} /* 430px */
+#slider-div-donation_choice_pp {
+    background-color:#4dbd38;
+    width:50%;} /* 430px */
 
 /* Main marketing message and sign up button */
 .jumbotron {
@@ -142,7 +152,7 @@ body {
     text-align: center;
 }
 .jumbotron h1 {
-    font-size: 100px;
+    font-size: 60px;
     line-height: 1;
 }
 .jumbotron .lead {

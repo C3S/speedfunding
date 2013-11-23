@@ -284,8 +284,8 @@ def donate_view(request):
             colander.String(),
             title=_(u'I want to say thanks with money. I donate:'),
             default='1',  # default: '1' ==> '5€'
-            #widget=deform.widget.SelectSliderWidget(
-            widget=deform.widget.SelectWidget(
+            widget=deform.widget.SelectSliderWidget(
+                #widget=deform.widget.SelectWidget(
                 values=donation_amount_choice),
             oid="donation_choice",
         )

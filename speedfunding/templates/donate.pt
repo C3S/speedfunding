@@ -6,19 +6,19 @@
       metal:use-macro="base"
       i18n:domain="speedfunding">
   <tal:block metal:fill-slot="deform-js-css">
-    <!-- link rel="stylesheet" href="${request.static_url('speedfunding:static/deform/form.css')}" type="text/css" media="screen" charset="utf-8" / -->
+    <link rel="stylesheet" href="${request.static_url('speedfunding:static/deform/form.css')}" type="text/css" media="screen" charset="utf-8" />
     <link rel="stylesheet"
-          href="http://deform2demo.repoze.org/static_deform/css/bootstrap.min.css"
+          href="/static/bootstrap.v2.3.2/css/bootstrap.min.css"
           type="text/css" media="screen" charset="utf-8"/>
     <!-- script type="text/javascript" src="/static/jquery-1.10.2.min.js"></script -->
     <!-- script type="text/javascript" src="/static/deform/deform.js"></script -->
     <!-- script src="http://code.jquery.com/jquery-1.9.1.js" --><!-- /script -->
     <!-- link rel="stylesheet" href="/static/jquery-ui.1.10.3-smoothness.css" / -->
-    <script src="/static/jquery-ui.1.10.3.js"></script>
+    <script src="/static/ss/jquery-ui.js"></script><!-- 1.10.3. -->
     <link rel="stylesheet" href="${request.static_url('speedfunding:static/c3sM.css')}" type="text/css" media="screen" charset="utf-8" />
   </tal:block>
   <tal:block metal:fill-slot="middle">
-    <h1 i18n:translate="donate-form-title">Speedfund the Cultural Commons Collecting Society (C3S)</h1>
+    <h1 i18n:translate="donate-form-title">Speedfund the C3S!</h1>
   </tal:block>
   <tal:block metal:fill-slot="bottom">
     <div style="text-align:left;">
@@ -34,9 +34,13 @@
     </div>
     <h2 i18n:translate="donate-form-headline" class="deform">Money Transfer / Donation</h2>
 
-    <!-- IF PAYPAL -->
-    <p tal:condition="paypal is True">
+    <p tal:condition="paypal is True"> <!--! IF PAYPAL -->
       <!-- spende -->
+      <link rel="stylesheet" href="/static/ss/jquery-ui.css" />
+      <script src="/static/ss/jquery-1.9.1.js"></script>
+      <script src="/static/ss/jquery-ui.js"></script>
+      <script type="text/javascript"
+              src="/static/ss/selectslider_pp.js"></script>
       <form target="paypal" action="https://www.paypal.com/cgi-bin/webscr"
             method="post">
         <input type="hidden" name="cmd" value="_s-xclick">
@@ -44,7 +48,7 @@
         <table>
           <tr><td><input type="hidden" name="on0" value="C3S Speedfunding">C3S
               Speedfunding</td></tr><tr><td>
-              <select name="os0" style="width:300px;">
+              <select name="os0" id="donation_choice_pp" style="width:300px;">
                 <option value="Option 1">Option 1 €5,00 EUR</option>
                 <option value="Option 2">Option 2 €10,00 EUR</option>
                 <option value="Option 3">Option 3 €25,00 EUR</option>
@@ -58,6 +62,7 @@
               </select>
           </td></tr>
         </table>
+        <div id="slider-div-donation_choice_pp"></div><br /> 
         <input type="hidden" name="currency_code" value="EUR">
         <input type="image"
                src="https://www.paypalobjects.com/de_DE/DE/i/btn/btn_cart_LG.gif"

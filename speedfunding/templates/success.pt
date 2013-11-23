@@ -7,7 +7,7 @@
       i18n:domain="speedfunding">
   <tal:block metal:fill-slot="deform-js-css">
     <link rel="stylesheet"
-          href="http://deform2demo.repoze.org/static_deform/css/bootstrap.min.css"
+          href="/static/bootstrap.v3.0.0/css/bootstrap.min.css"
           type="text/css" media="screen" charset="utf-8"/>
     <link rel="stylesheet"
           href="${request.static_url('speedfunding:static/c3sM.css')}"
