@@ -99,110 +99,111 @@ def speedfunding_view(request):
         print("== locale is :" + str(locale_name))
         print("== choosing :" + str(country_default))
 
-    # declare a form
-    class PaymentChoiceForm(colander.MappingSchema):
-        """
-        do you want to pay with paypal or not?
-        """
-        payment_option = colander.SchemaNode(
-            colander.String(),
-            title=_('I want to pay for the donation/shirt via paypal '
-                    '... or rather not.'),
-            widget=deform.widget.RadioChoiceWidget(
-                values=(
-                    ('paypal', _(u'Yes, PayPal is OK for me.')),
-                    ('transfer', _(u'No. I will transfer the money myself.')),
-                ),
-                default='paypal',
-            )
-        )
+    # # declare a form
+    # class PaymentChoiceForm(colander.MappingSchema):
+    #     """
+    #     do you want to pay with paypal or not?
+    #     """
+    #     payment_option = colander.SchemaNode(
+    #         colander.String(),
+    #         title=_('I want to pay for the donation/shirt via paypal '
+    #                 '... or rather not.'),
+    #         widget=deform.widget.RadioChoiceWidget(
+    #             values=(
+    #                 ('paypal', _(u'Yes, PayPal is OK for me.')),
+    #                 ('transfer', _(u'No. I will transfer the money myself.')),
+    #             ),
+    #             default='paypal',
+    #         )
+    #     )
 
-    schema = PaymentChoiceForm()
+    # schema = PaymentChoiceForm()
 
-    form = deform.Form(
-        schema,
-        buttons=[  # stick three buttons on the form
-            deform.Button('donate', _(u'Donate')),
-            deform.Button('shirt', _(u'T-Shirt')),
-            deform.Button('shares', _(u'Shares')),
-        ])
+    # form = deform.Form(
+    #     schema,
+    #     buttons=[  # stick three buttons on the form
+    #         deform.Button('donate', _(u'Donate')),
+    #         deform.Button('shirt', _(u'T-Shirt')),
+    #         deform.Button('shares', _(u'Shares')),
+    #     ])
 
-    # if the form has been used and SUBMITTED, check contents
-    # the form was submitted, if there is either 'donate',
-    # 'shirt' or 'share' in request.POST
-    submitted = (
-        ('donate' in request.POST)
-        or ('shirt' in request.POST)
-        or ('shares' in request.POST)
-    )
-    if submitted is True:
-        print("submitted!")
+    # # if the form has been used and SUBMITTED, check contents
+    # # the form was submitted, if there is either 'donate',
+    # # 'shirt' or 'share' in request.POST
+    # submitted = (
+    #     ('donate' in request.POST)
+    #     or ('shirt' in request.POST)
+    #     or ('shares' in request.POST)
+    # )
+    # if submitted is True:
+    #     print("submitted!")
 
-    if submitted:  # someone klicked a button, but which one?
+    # if submitted:  # someone klicked a button, but which one?
 
-        if 'shares' in request.POST:
-            print("shares was chosen.")
-            return HTTPFound(
-                location=request.route_url('yes'),  # https://yes.c3s.cc
-            )
+    #     if 'shares' in request.POST:
+    #         print("shares was chosen.")
+    #         return HTTPFound(
+    #             location=request.route_url('yes'),  # https://yes.c3s.cc
+    #         )
 
-        controls = request.POST.items()
-        try:
-            appstruct = form.validate(controls)
-        except deform.ValidationFailure, e:
-            print(e)
-            request.session.flash(
-                _(u"Please note: There were errors, "
-                  "please check the form below."),
-                'message_above_form',
-                allow_duplicate=False)
-            # if there were errors, present the form with error messages
-            return{'form': e.render()}
+    #     controls = request.POST.items()
+    #     try:
+    #         appstruct = form.validate(controls)
+    #     except deform.ValidationFailure, e:
+    #         print(e)
+    #         request.session.flash(
+    #             _(u"Please note: There were errors, "
+    #               "please check the form below."),
+    #             'message_above_form',
+    #             allow_duplicate=False)
+    #         # if there were errors, present the form with error messages
+    #         return{'form': e.render()}
 
-        request.session.pop_flash('message_above_form')
-        # if the form validated correctly, use the data given
-        print("the appstruct: %s" % appstruct)
+    #     request.session.pop_flash('message_above_form')
+    #     # if the form validated correctly, use the data given
+    #     print("the appstruct: %s" % appstruct)
 
-        if 'shirt' in request.POST:
-            if appstruct['payment_option'] == 'paypal':
-                print("it is paypal, do something")
-                request._paypal = True
-            if appstruct['payment_option'] == 'transfer':
-                print("it is transfer, do something")
-                request._paypal = False
+    #     if 'shirt' in request.POST:
+    #         if appstruct['payment_option'] == 'paypal':
+    #             print("it is paypal, do something")
+    #             request._paypal = True
+    #         if appstruct['payment_option'] == 'transfer':
+    #             print("it is transfer, do something")
+    #             request._paypal = False
 
-            return HTTPFound(
-                location=request.route_url('shirt'),
-                headers=request.response.headers,
-            )
+    #         return HTTPFound(
+    #             location=request.route_url('shirt'),
+    #             headers=request.response.headers,
+    #         )
 
-        if ('donate' in request.POST):
-            if appstruct['payment_option'] == 'paypal':
-                print("it is paypal, do something")
-                #request._paypal = True
-                request.response.set_cookie('_paypal_', 'yes')
-                request.session['appstruct'] = appstruct
-                request.session.flash('DEBUG: with paypal',
-                                      'message_above_form')
-                return HTTPFound(
-                    location=request.route_url('donate')
-                    # redirect to paypal donation options
-                )
+    #     if ('donate' in request.POST):
+    #         if appstruct['payment_option'] == 'paypal':
+    #             print("it is paypal, do something")
+    #             #request._paypal = True
+    #             request.response.set_cookie('_paypal_', 'yes')
+    #             request.session['appstruct'] = appstruct
+    #             request.session.flash('DEBUG: with paypal',
+    #                                   'message_above_form')
+    #             return HTTPFound(
+    #                 location=request.route_url('donate')
+    #                 # redirect to paypal donation options
+    #             )
 
-            if appstruct['payment_option'] == 'transfer':
-                print("it is transfer, do something")
-                #request._paypal = False
-                request.response.set_cookie('_paypal_', 'no')
-                request.session['appstruct'] = appstruct
-                request.session.flash('DEBUG: no paypal',
-                                      'message_above_form')
-            return HTTPFound(
-                location=request.route_url('donate'),
-                headers=request.response.headers,
-            )
+    #         if appstruct['payment_option'] == 'transfer':
+    #             print("it is transfer, do something")
+    #             #request._paypal = False
+    #             request.response.set_cookie('_paypal_', 'no')
+    #             request.session['appstruct'] = appstruct
+    #             request.session.flash('DEBUG: no paypal',
+    #                                   'message_above_form')
+    #         return HTTPFound(
+    #             location=request.route_url('donate'),
+    #             headers=request.response.headers,
+    #         )
 
-    # if not submitted: show form
-    html = form.render()
+    # # if not submitted: show form
+    # html = form.render()
+    html = ''
 
     _the_total = TheTotal.get_total()
     try:
