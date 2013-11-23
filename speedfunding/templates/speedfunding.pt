@@ -41,11 +41,12 @@
       </h3>
 
       <p i18n:translate='the-status-blog-paragraph'>
-        At our blog, you can find more details on cost and balance (German only).
+        At our blog, you can find more details on cost and balance.
       </p>
-      <a href="https://www.c3s.cc/wo-geht-euer-geld-hin/">
-        https://www.c3s.cc/wo-geht-euer-geld-hin/
-      </a>
+      <a href="https://www.c3s.cc/wo-geht-euer-geld-hin/" target="_blank"
+	 i18n:translate="money-blog-linktitle-de">(german)</a>
+      <a href="https://www.c3s.cc/money-crowdfunding-campaign-go/" target="_blank"
+	 i18n:translate="money-blog-linktitle-en">(english)</a>
     <hr />
 
     <div style="text-align:left;">
@@ -123,11 +124,12 @@
         <p i18n:translate="speedfunding-help-paragraph-1">
           On our blog you can read about the details of our cost during the last crowdfunding. Therefore, we have decided to reduce it to a minimum. We are speedfunding the last missing amount on our very own. No crowdfunding platform. We don't want to spend our members' money for any cost that can be avoided.
         </p>
-        <a href="https://www.c3s.cc/wo-geht-euer-geld-hin/">
-          https://www.c3s.cc/wo-geht-euer-geld-hin/
-        </a>
+        <a href="https://www.c3s.cc/wo-geht-euer-geld-hin/" target="_blank"
+	   i18n:translate="money-blog-linktitle-de">(german)</a>
+        <a href="https://www.c3s.cc/money-crowdfunding-campaign-go/" target="_blank"
+	   i18n:translate="money-blog-linktitle-en">(english)</a>
         <p i18n:translate="speedfunding-help-paragraph-2">
-          In 2014, we want to start with the full public funding by the Federal State of North-Rhine Westfalia. It is 70.000 Euros that are missing.
+          In 2014, we want to start with the full public funding by the Federal State of North-Rhine Westphalia. It is 70.000 Euros that are missing.
         </p>
         
         <h3 i18n:translate="speedfund-subheading-last-time" class="deform">
