@@ -33,6 +33,7 @@ def main(global_config, **settings):
     config.add_route('yes', '/yes')
     config.add_route('login', '/login')
     config.add_route('logout', '/logout')
+    config.add_route('total', '/total')
     config.add_route('dashboard', '/dashboard/{number}')
     config.add_route('detail', '/detail/{speed_id}')
     config.add_route('switch_pay', '/switch_pay/{speed_id}')

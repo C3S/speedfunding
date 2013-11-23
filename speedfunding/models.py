@@ -162,7 +162,7 @@ class TheTotal(Base):
         self.amount_promised = amount_promised
         self.num_shirts = num_shirts
         self.time = func.current_timestamp()
-        
+
     @classmethod
     def get_by_id(cls, _id):
         """
@@ -185,6 +185,25 @@ class TheTotal(Base):
         # return
         return TheTotal.get_by_id(_id)
         #pass  # read the total from the last entry...
+
+    # @classmethod
+    # def get_listing(cls, order_by, how_many=5, offset=0):
+    #     """
+    #     get the five last entries
+    #     """
+    #     _we_have = DBSession.query(cls).count()
+    #     print("there are %s entries in TheTotal" % _we_have)
+    #     _how_many = how_many
+    #     _offset = _we_have - 5
+    #     print("the offset: %s" % _offset)
+    #     q = DBSession.query(cls).all()[_offset:_how_many]
+    #     return q
+    @classmethod
+    def get_listing(cls, order_by):
+        """
+        get all entries
+        """
+        return DBSession.query(cls).all()
 
 # machinery and data model for accountants
 

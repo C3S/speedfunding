@@ -3,6 +3,8 @@
 from speedfunding.models import (
     Speedfundings,
     C3sStaff,
+    TheTotal,
+    DBSession,
 )
 
 from pkg_resources import resource_filename
@@ -55,6 +57,96 @@ LOGGING = True
 if LOGGING:  # pragma: no cover
     import logging
     log = logging.getLogger(__name__)
+
+
+@view_config(renderer='templates/total.pt',
+             permission='manage',
+             route_name='total')
+def new_total(request):
+    """
+    This view lets accountants set the amount collected:
+    """
+
+    class NewTotal(colander.MappingSchema):
+        """
+        colander schema for setting the collected sum
+        """
+        amount_collected = colander.SchemaNode(
+            colander.Int(),
+            title=_(u"sum collected"),
+            validator=colander.Range(0, 200000),
+            oid="sum",
+        )
+        amount_promised = colander.SchemaNode(
+            colander.Int(),
+            title=_(u"promised"),
+            oid="promised",
+        )
+        num_shirts = colander.SchemaNode(
+            colander.Int(),
+            title=_(u"shirts"),
+            oid="shirts",
+        )
+
+    schema = NewTotal()
+
+    form = deform.Form(
+        schema,
+        buttons=[
+            deform.Button('submit', _(u'Submit')),
+            deform.Button('reset', _(u'Reset'))
+        ],
+        #use_ajax=True,
+        #renderer=zpt_renderer
+    )
+
+    # get and show the former totals
+    _totals = TheTotal.get_listing(
+        TheTotal.id.asc())
+
+    # if the form has been used and SUBMITTED, check contents
+    if 'submit' in request.POST:
+        print("the form was submitted")
+        controls = request.POST.items()
+        try:
+            appstruct = form.validate(controls)
+            print("the appstruct: %s" % appstruct)
+
+            # time to save the data to the DB
+            #{
+            #    'num_shirts': 123,
+            #    'amount_collected': 12345,
+            #    'amount_promised': 23456
+            #}
+
+            _new_total = TheTotal(
+                amount_actual=appstruct['amount_collected'],
+                amount_promised=appstruct['amount_promised'],
+                num_shirts=appstruct['num_shirts'],
+            )
+            try:
+                DBSession.add(_new_total)
+                DBSession.flush()
+            except:
+                print("could not write to DB. Error: ")
+
+        except ValidationFailure, e:
+            print(e)
+
+            request.session.flash(
+                _(u"Please note: There were errors, "
+                  "please check the form below."),
+                'message_above_form',
+                allow_duplicate=False)
+            return{'form': e.render(),
+                   'totals': {}}
+
+    html = form.render()
+
+    return {
+        'form': html,
+        'totals': _totals,
+    }
 
 
 @view_config(renderer='templates/login.pt',
