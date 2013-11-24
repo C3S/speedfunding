@@ -17,14 +17,8 @@
     <h1 i18n:translate="success-page-thanks">Thank You!</h1>
   </tal:block>
   <tal:block metal:fill-slot="bottom">
-    <div style="text-align:left;">
-      <strong style="color:red;" tal:repeat="message request.session.pop_flash('message_above_form')">
-	${message}
-      </strong>
-    </div> &nbsp;
     <h2 i18n:translate="success-headline" class="deform">Success</h2>
     <p i18n:translate="donate-form-fill-verify-print-send">
-      say thanks here...
     </p>
     <div class="row-fluid">
       <div class="span4">

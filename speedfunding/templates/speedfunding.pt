@@ -161,11 +161,8 @@
             </a> from <a href="http://vimeo.com/c3s">C3S</a> on
             <a href="https://vimeo.com">Vimeo</a>.
           </p>
-          <p>
+          <p i18n:translate='crowdfunding-video-p1'>
             The video is part of the crowdfunding campaign for Cultural Commons Collecting Society (C3S), an initiative to found a new, fair and flexible collecting society to benefit independent musicians.
-            <br />
-            <br />
-            C3S, who runs this account has ordered the video from Noah Felk for the campaign. Several members of the C3S team are part of the video (Holger Schwetter, Meinhard Starostik, Tanja Mark, m.eik michalke, Danny Bruder and Wolfgang Senges).
           </p>
         </div>
       </div>
