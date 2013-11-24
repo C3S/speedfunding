@@ -14,7 +14,7 @@
           type="text/css" media="screen" charset="utf-8" />
   </tal:block>
   <tal:block metal:fill-slot="middle">
-    <h1 i18n:translate="donate-form-title">Speedfund the Cultural Commons Collecting Society (C3S)</h1>
+    <h1 i18n:translate="success-page-thanks">Thank You!</h1>
   </tal:block>
   <tal:block metal:fill-slot="bottom">
     <div style="text-align:left;">
