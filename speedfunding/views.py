@@ -9,13 +9,13 @@ from speedfunding.utils import make_confirmation_email
 #from pyramid.response import Response
 from pyramid.view import view_config
 from pyramid.httpexceptions import HTTPFound
-
+from pyramid.threadlocal import get_current_request
 from pyramid.i18n import (
-    #    get_localizer,
+    get_localizer,
     get_locale_name
 )
 from pyramid_mailer import get_mailer
-
+from pkg_resources import resource_filename
 #from sqlalchemy.exc import DBAPIError
 #from .models import (
 #    DBSession,
@@ -28,7 +28,25 @@ import colander
 from translationstring import TranslationStringFactory
 _ = TranslationStringFactory('speedfunding')
 
-# XXX TODO: i18n
+deform_templates = resource_filename('deform', 'templates')
+speedfunding_templates = resource_filename('speedfunding', 'templates')
+
+my_search_path = (deform_templates, speedfunding_templates)
+
+
+def translator(term):
+    return get_localizer(get_current_request()).translate(term)
+
+my_template_dir = resource_filename('speedfunding', 'templates/')
+deform_template_dir = resource_filename('deform', 'templates/')
+zpt_renderer = deform.ZPTRendererFactory(
+    [
+        my_template_dir,
+        deform_template_dir,
+    ],
+    translator=translator,
+)
+
 country_codes = [
     ('AT', _(u'Austria')),
     ('BE', _(u'Belgium')),

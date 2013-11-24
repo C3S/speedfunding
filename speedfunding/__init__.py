@@ -42,6 +42,10 @@ def main(global_config, **settings):
     config.set_request_factory(RequestWithUserAttribute)
     config.include('pyramid_chameleon')  # templating
     config.include('pyramid_mailer')  # mailings
+    config.add_translation_dirs(
+        'colander:locale/',
+        'deform:locale/',
+        'speedfunding:locale/')
     config.add_static_view('static_deform', 'deform:static')
     config.add_subscriber('speedfunding.subscribers.add_base_template',
                           'pyramid.events.BeforeRender')
