@@ -6,7 +6,7 @@
       metal:use-macro="base"
       i18n:domain="speedfunding">
   <tal:block metal:fill-slot="meta">
-    <meta http-equiv="refresh" content="5; URL=https://yes.c3s.cc/">
+    <meta http-equiv="refresh" content="5; URL=https://yes.c3s.cc/" />
   </tal:block>
   <tal:block metal:fill-slot="middle">
     <h1 i18n:translate="donate-form-title">Speedfund the Cultural Commons Collecting Society (C3S)</h1>
