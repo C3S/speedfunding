@@ -5,7 +5,7 @@ from speedfunding.models import (
     TheTotal,
     DBSession,
 )
-
+from speedfunding.utils import make_confirmation_email
 #from pyramid.response import Response
 from pyramid.view import view_config
 from pyramid.httpexceptions import HTTPFound
@@ -14,9 +14,9 @@ from pyramid.i18n import (
     #    get_localizer,
     get_locale_name
 )
+from pyramid_mailer import get_mailer
 
 #from sqlalchemy.exc import DBAPIError
-
 #from .models import (
 #    DBSession,
 #    MyModel,
@@ -355,8 +355,14 @@ def donate_view(request):
             try:
                 DBSession.add(_donation)
                 DBSession.flush()
+                #print("speedfunding entry was persisted.")
             except:
                 print("failed to persist")
+            #try:
+            mailer = get_mailer(request)
+            mailer.send(make_confirmation_email(_donation))
+            #except:
+            #    print("failed to send the mail")
 
         except deform.ValidationFailure, e:
             print(e)
