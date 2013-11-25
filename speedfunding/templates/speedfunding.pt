@@ -29,8 +29,11 @@
       <p class="lead" i18n:translate="speedfund-help-us-lead2">
         Now!
       </p>
+      <p class="lead" i18n:translate="speedfunding-timespan" style="font-weight:bold;">
+        +++ 25th November to 9th December 2013 +++
+      </p>
       <p i18n:translate="speedfund-help-us-lead3">
-        No matter how much we can achieve, your entire support will be of benefit for the project. It's no funding like 'all or nothing'. In case we'll get less than or equal to 70.000 €, all of the amount is being added to the funding of the C3S software development in the project supported by the Federal State of North-Rhine Westphalia.
+        No matter how much we can achieve, your entire support will be of benefit for the project. It's no funding like 'all or nothing'. In case we'll get less than or equal to 70.000 €, every Euro will get us another Euro of funding. If we surpass the sum, the entire amount is being added to the funding of the C3S.
       </p>
     </div>
     <hr />
