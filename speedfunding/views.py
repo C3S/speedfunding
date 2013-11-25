@@ -198,7 +198,7 @@ def donate_view(request):
         """
         the_amount = colander.SchemaNode(
             colander.String(),
-            title=_(u'I want to say thanks with money. I donate:'),
+            title=_(u'I want to support C3S with my donation:'),
             default='1',  # default: '1' ==> '5€'
             widget=deform.widget.SelectSliderWidget(
                 #widget=deform.widget.SelectWidget(
@@ -223,7 +223,8 @@ def donate_view(request):
         )
         #if True:
         personalData = PersonalData(
-            title=_('We need some personal data to be able to contact you.')
+            title=_(u'Please tell us your email address in case we need '
+                    'to contact you:')
         )
 
     # now construct the form schema from the parts above

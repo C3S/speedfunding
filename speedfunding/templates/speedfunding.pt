@@ -17,11 +17,20 @@
   </tal:block>
   <tal:block metal:fill-slot="middle">
     <div class="jumbotron">
-      <h1 i18n:translate="speedfund-form-title">Speedfund the C3S!</h1>
+      <h1 i18n:translate="speedfund-form-title">
+        Come together and help to FlashFund the C3S!
+      </h1>
+
+      <p class="lead" i18n:translate="speedfund-help-us-lead">
+        Help to spark the C3S by lightning!
+      </p>
+      <p class="lead" i18n:translate="speedfund-help-us-p1">
+        This is the finish - help us to close the funding gap.
+      </p>
+      <p class="lead" i18n:translate="speedfund-help-us-lead2">
+        Now!
+      </p>
     </div>
-    <p class="lead" i18n:translate="speedfund-help-us">
-      Help us make ends meet. Now!
-    </p>
     <hr />
   </tal:block>
   <tal:block metal:fill-slot="bottom">
@@ -49,7 +58,7 @@
       <hr />
       <div style="text-align:left;">
         <h2 i18n:translate='the-options-h2'>The Options</h2>
-        <p class="lead" i18n:translate='the-options-p1'>We have three options for you to choose from.
+        <p i18n:translate='the-options-p1'>We have three options for you to choose from.
 	  The most preferred selections from our crowdfunding. Of course, you can come back more often than once.
         </p>
       </div>
@@ -119,7 +128,7 @@
       <div class="row-fluid">
         <div class="span5">
           <h3 i18n:translate="speedfund-subheading-help" class="deform">
-            We need your help to finish the race!
+            We are flashfunding the last missing amount
           </h3>
           <p i18n:translate="speedfunding-help-paragraph-1">
             On our blog you can read about the details of our cost during the last crowdfunding. Therefore, we have decided to reduce it to a minimum. We are speedfunding the last missing amount on our very own. No crowdfunding platform. We don't want to spend our members' money for any cost that can be avoided.
