@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: speedfunding 0.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2013-11-25 09:27+0100\n"
+"POT-Creation-Date: 2013-11-25 15:52+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -174,7 +174,7 @@ msgid "other"
 msgstr ""
 
 #: speedfunding/views.py:201
-msgid "I want to say thanks with money. I donate:"
+msgid "I want to support C3S with a donation:"
 msgstr ""
 
 #: speedfunding/views.py:212

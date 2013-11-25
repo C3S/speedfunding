@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: speedfunding 0.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2013-11-25 09:27+0100\n"
-"PO-Revision-Date: 2013-11-25 09:30+0100\n"
+"POT-Creation-Date: 2013-11-25 15:52+0100\n"
+"PO-Revision-Date: 2013-11-25 16:26+0100\n"
 "Last-Translator: Christoph Scheid <christoph.scheid@c3s.cc>\n"
 "Language-Team: de <LL@li.org>\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -178,8 +178,9 @@ msgid "other"
 msgstr "anderes"
 
 #: speedfunding/views.py:201
-msgid "I want to say thanks with money. I donate:"
-msgstr "Ich möchte mir Geld Danke sagen bzw. etwas spenden."
+#| msgid "I want to say thanks with money. I donate:"
+msgid "I want to support C3S with a donation:"
+msgstr "Ich möchte die C3S mit meiner Spende unterstützen:"
 
 #: speedfunding/views.py:212
 msgid "Email"
@@ -300,7 +301,7 @@ msgstr "[helfe C3S!] Danke für die Auswahl des T-Shirts!"
 #. Default: Speedfunding for Cultural Commons Collecting Society (C3S SCE)
 #: speedfunding/templates/base.pt:7
 msgid "speedfunding-form-title"
-msgstr "Speedfunding für die Cultural Commons Collecting Society (C3S SCE)"
+msgstr "FlashFunding für die C3S"
 
 #. Default: Help fund the C3S!
 #: speedfunding/templates/donate.pt:21 speedfunding/templates/shirt.pt:21
@@ -314,7 +315,6 @@ msgstr "Spende"
 
 #. Default: backend
 #: speedfunding/templates/login.pt:13
-#| msgid "join-form-title"
 msgid "login-form-title"
 msgstr "backend"
 
@@ -350,7 +350,7 @@ msgstr ""
 #. Default: Speedfund the C3S!
 #: speedfunding/templates/speedfunding.pt:20
 msgid "speedfund-form-title"
-msgstr "Helfe der C3S mit Anschubfinanzierung!"
+msgstr "Helft der C3S beim FlashFunding!"
 
 #. Default: Help us make ends meet. Now!
 #: speedfunding/templates/speedfunding.pt:22
