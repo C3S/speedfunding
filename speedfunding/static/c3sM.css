@@ -201,3 +201,12 @@ body {
     border-right: 0;
     border-radius: 0 3px 3px 0;
 }
+
+.help-block {
+    color:red;
+}
+.form-group.has-error {
+    background-color:#f2dede;
+    border-color:#eed3d7;
+}
+.panel-heading {color:#4dbd38;font-weight:bold;}
