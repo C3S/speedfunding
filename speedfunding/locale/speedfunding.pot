@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: speedfunding 0.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2013-11-24 21:36+0100\n"
+"POT-Creation-Date: 2013-11-25 01:14+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -40,8 +40,8 @@ msgid "Reset"
 msgstr ""
 
 #: speedfunding/accountants_views.py:138 speedfunding/accountants_views.py:208
-#: speedfunding/accountants_views.py:486 speedfunding/views.py:388
-#: speedfunding/views.py:586
+#: speedfunding/accountants_views.py:486 speedfunding/views.py:396
+#: speedfunding/views.py:594
 msgid "Please note: There were errors, please check the form below."
 msgstr ""
 
@@ -57,231 +57,235 @@ msgstr ""
 msgid "Have we received payment for the funding item??"
 msgstr ""
 
-#: speedfunding/views.py:51
+#: speedfunding/views.py:52
 msgid "Austria"
 msgstr ""
 
-#: speedfunding/views.py:52
+#: speedfunding/views.py:53
 msgid "Belgium"
 msgstr ""
 
-#: speedfunding/views.py:53
+#: speedfunding/views.py:54
 msgid "Bulgaria"
 msgstr ""
 
-#: speedfunding/views.py:54
+#: speedfunding/views.py:55
 msgid "Switzerland"
 msgstr ""
 
-#: speedfunding/views.py:55
+#: speedfunding/views.py:56
 msgid "Czech Republic"
 msgstr ""
 
-#: speedfunding/views.py:56
+#: speedfunding/views.py:57
 msgid "Germany"
 msgstr ""
 
-#: speedfunding/views.py:57
+#: speedfunding/views.py:58
 msgid "Denmark"
 msgstr ""
 
-#: speedfunding/views.py:58
+#: speedfunding/views.py:59
 msgid "Spain"
 msgstr ""
 
-#: speedfunding/views.py:59
+#: speedfunding/views.py:60
 msgid "Estonia"
 msgstr ""
 
-#: speedfunding/views.py:60
+#: speedfunding/views.py:61
 msgid "Finland"
 msgstr ""
 
-#: speedfunding/views.py:61
+#: speedfunding/views.py:62
 msgid "France"
 msgstr ""
 
-#: speedfunding/views.py:62
+#: speedfunding/views.py:63
 msgid "United Kingdom"
 msgstr ""
 
-#: speedfunding/views.py:63
+#: speedfunding/views.py:64
 msgid "Greece"
 msgstr ""
 
-#: speedfunding/views.py:64
+#: speedfunding/views.py:65
 msgid "Hungary"
 msgstr ""
 
-#: speedfunding/views.py:65
+#: speedfunding/views.py:66
 msgid "Croatia"
 msgstr ""
 
-#: speedfunding/views.py:66
+#: speedfunding/views.py:67
 msgid "Israel"
 msgstr ""
 
-#: speedfunding/views.py:67
+#: speedfunding/views.py:68
 msgid "Ireland"
 msgstr ""
 
-#: speedfunding/views.py:68
+#: speedfunding/views.py:69
 msgid "Italy"
 msgstr ""
 
-#: speedfunding/views.py:69
+#: speedfunding/views.py:70
 msgid "Lithuania"
 msgstr ""
 
-#: speedfunding/views.py:70
+#: speedfunding/views.py:71
 msgid "Latvia"
 msgstr ""
 
-#: speedfunding/views.py:71
+#: speedfunding/views.py:72
 msgid "Luxembourg"
 msgstr ""
 
-#: speedfunding/views.py:72
+#: speedfunding/views.py:73
 msgid "Malta"
 msgstr ""
 
-#: speedfunding/views.py:73
+#: speedfunding/views.py:74
 msgid "Netherlands"
 msgstr ""
 
-#: speedfunding/views.py:74
+#: speedfunding/views.py:75
 msgid "Poland"
 msgstr ""
 
-#: speedfunding/views.py:75
+#: speedfunding/views.py:76
 msgid "Portugal"
 msgstr ""
 
-#: speedfunding/views.py:76
+#: speedfunding/views.py:77
 msgid "Slovakia"
 msgstr ""
 
-#: speedfunding/views.py:77
+#: speedfunding/views.py:78
 msgid "Slovenia"
 msgstr ""
 
-#: speedfunding/views.py:78
+#: speedfunding/views.py:79
 msgid "Sweden"
 msgstr ""
 
-#: speedfunding/views.py:79
+#: speedfunding/views.py:80
 msgid "other"
 msgstr ""
 
-#: speedfunding/views.py:304
+#: speedfunding/views.py:305
 msgid "I want to say thanks with money. I donate:"
 msgstr ""
 
-#: speedfunding/views.py:315
+#: speedfunding/views.py:316
 msgid "Email"
 msgstr ""
 
-#: speedfunding/views.py:325
+#: speedfunding/views.py:326
 msgid "The Donation"
 msgstr ""
 
-#: speedfunding/views.py:329
+#: speedfunding/views.py:330
 msgid "We need some personal data to be able to contact you."
 msgstr ""
 
-#: speedfunding/views.py:338
+#: speedfunding/views.py:339
 msgid "Yes, I want to donate!"
 msgstr ""
 
-#: speedfunding/views.py:339 speedfunding/views.py:542
+#: speedfunding/views.py:340 speedfunding/views.py:550
 msgid "Go back, let me start over again."
 msgstr ""
 
-#: speedfunding/views.py:459
-msgid "Yes, I'll have a T-Shirt please! Send Me"
-msgstr ""
-
-#: speedfunding/views.py:464
-msgid "S €35,00 EUR"
-msgstr ""
-
-#: speedfunding/views.py:465
-msgid "M €35,00 EUR"
-msgstr ""
-
-#: speedfunding/views.py:466
-msgid "L €35,00 EUR"
+#: speedfunding/views.py:382
+msgid "confirming your submission"
 msgstr ""
 
 #: speedfunding/views.py:467
-msgid "XL €35,00 EUR"
-msgstr ""
-
-#: speedfunding/views.py:468
-msgid "XXL €35,00 EUR"
-msgstr ""
-
-#: speedfunding/views.py:469
-msgid "S (Ladyfit) €35,00 EUR"
-msgstr ""
-
-#: speedfunding/views.py:470
-msgid "M (Ladyfit) €35,00 EUR"
-msgstr ""
-
-#: speedfunding/views.py:471
-msgid "L (Ladyfit) €35,00 EUR"
+msgid "Yes, I'll have a T-Shirt please! Send Me"
 msgstr ""
 
 #: speedfunding/views.py:472
-msgid "XL (Ladyfit) €35,00 EUR"
+msgid "S €35,00 EUR"
 msgstr ""
 
 #: speedfunding/views.py:473
+msgid "M €35,00 EUR"
+msgstr ""
+
+#: speedfunding/views.py:474
+msgid "L €35,00 EUR"
+msgstr ""
+
+#: speedfunding/views.py:475
+msgid "XL €35,00 EUR"
+msgstr ""
+
+#: speedfunding/views.py:476
+msgid "XXL €35,00 EUR"
+msgstr ""
+
+#: speedfunding/views.py:477
+msgid "S (Ladyfit) €35,00 EUR"
+msgstr ""
+
+#: speedfunding/views.py:478
+msgid "M (Ladyfit) €35,00 EUR"
+msgstr ""
+
+#: speedfunding/views.py:479
+msgid "L (Ladyfit) €35,00 EUR"
+msgstr ""
+
+#: speedfunding/views.py:480
+msgid "XL (Ladyfit) €35,00 EUR"
+msgstr ""
+
+#: speedfunding/views.py:481
 msgid "XXL (Ladyfit) €35,00 EUR"
 msgstr ""
 
-#: speedfunding/views.py:486
+#: speedfunding/views.py:494
 msgid "First Name"
 msgstr ""
 
-#: speedfunding/views.py:490
+#: speedfunding/views.py:498
 msgid "Last Name"
 msgstr ""
 
-#: speedfunding/views.py:495
+#: speedfunding/views.py:503
 msgid "Email (just in case we need to check back with you)"
 msgstr ""
 
-#: speedfunding/views.py:499
+#: speedfunding/views.py:507
 msgid "Address Line 1"
 msgstr ""
 
-#: speedfunding/views.py:504
+#: speedfunding/views.py:512
 msgid "Address Line 2"
 msgstr ""
 
-#: speedfunding/views.py:508
+#: speedfunding/views.py:516
 msgid "Post Code"
 msgstr ""
 
-#: speedfunding/views.py:513
+#: speedfunding/views.py:521
 msgid "City"
 msgstr ""
 
-#: speedfunding/views.py:518
+#: speedfunding/views.py:526
 msgid "Country"
 msgstr ""
 
-#: speedfunding/views.py:530
-msgid "choose shirt size"
-msgstr ""
-
-#: speedfunding/views.py:533
-msgid "Personal Data"
+#: speedfunding/views.py:538
+msgid "Choose a Shirt"
 msgstr ""
 
 #: speedfunding/views.py:541
+msgid "Personal Data"
+msgstr ""
+
+#: speedfunding/views.py:549
 msgid "Yes, I want this T-Shirt!"
 msgstr ""
 
@@ -290,14 +294,13 @@ msgstr ""
 msgid "speedfunding-form-title"
 msgstr ""
 
-#. Default: Speedfund the C3S!
+#. Default: Help fund the C3S!
 #: speedfunding/templates/donate.pt:21 speedfunding/templates/shirt.pt:21
 msgid "donate-form-title"
 msgstr ""
 
 #. Default: Money Transfer / Donation
-#. Default: T-Shirts!
-#: speedfunding/templates/donate.pt:35 speedfunding/templates/shirt.pt:35
+#: speedfunding/templates/donate.pt:35
 msgid "donate-form-headline"
 msgstr ""
 
@@ -306,9 +309,24 @@ msgstr ""
 msgid "join-form-title"
 msgstr ""
 
-#. Default: ...some helpful instructions...
-#: speedfunding/templates/shirt.pt:36
-msgid "donate-form-fill-verify-print-send"
+#. Default: T-Shirts!
+#: speedfunding/templates/shirt.pt:35
+msgid "shirt-form-headline"
+msgstr ""
+
+#. Default: You want a shirt and want to transfer the money to us by yourself. We
+#. need to know what size and fit the shirt should be. We also need your address so
+#. we can send you the shirt.
+#: speedfunding/templates/shirt.pt:37
+msgid "shirt-form-common-p1"
+msgstr ""
+
+#. Default: You want a shirt and want to transfer the money via Paypal. We need to
+#. know what size and fit the shirt should be. We will receive your address from
+#. PayPal so we can send you the shirt. Make sure the address you entered in your
+#. PayPal account is right.
+#: speedfunding/templates/shirt.pt:44
+msgid "shirt-form-paypal-p1"
 msgstr ""
 
 #. Default: Speedfund the C3S!
@@ -483,14 +501,6 @@ msgstr ""
 #. collecting society to benefit independent musicians.
 #: speedfunding/templates/speedfunding.pt:164
 msgid "crowdfunding-video-p1"
-msgstr ""
-
-#. Default: C3S, who runs this account has ordered the video from Noah Felk for the
-#. campaign. Several members of the C3S team are part of the video (Holger
-#. Schwetter, Meinhard Starostik, Tanja Mark, m.eik michalke, Danny Bruder and
-#. Wolfgang Senges).
-#: speedfunding/templates/speedfunding.pt:167
-msgid "crowdfunding-video-p2"
 msgstr ""
 
 #. Default: Thank You!
