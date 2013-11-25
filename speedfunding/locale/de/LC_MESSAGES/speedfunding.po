@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: speedfunding 0.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2013-11-25 16:30+0100\n"
-"PO-Revision-Date: 2013-11-25 16:34+0100\n"
+"POT-Creation-Date: 2013-11-25 16:37+0100\n"
+"PO-Revision-Date: 2013-11-25 17:06+0100\n"
 "Last-Translator: Christoph Scheid <christoph.scheid@c3s.cc>\n"
 "Language-Team: de <LL@li.org>\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -178,7 +178,6 @@ msgid "other"
 msgstr "anderes"
 
 #: speedfunding/views.py:201
-#| msgid "I want to support C3S with a donation:"
 msgid "I want to support C3S with my donation:"
 msgstr "Ich möchte die C3S mit meiner Spende unterstützen:"
 
@@ -351,67 +350,72 @@ msgstr ""
 #. Default: Come together and help to FlashFund the C3S!
 #: speedfunding/templates/speedfunding.pt:20
 msgid "speedfund-form-title"
-msgstr "Helft der C3S beim FlashFunding!"
+msgstr "FlashFunding!"
 
 #. Default: Help to spark the C3S by lightning!
 #: speedfunding/templates/speedfunding.pt:24
-#| msgid "speedfund-help-us"
 msgid "speedfund-help-us-lead"
 msgstr "Helft der C3S mit einem Donnerschlag!"
 
 #. Default: This is the finish - help us to close the funding gap.
 #: speedfunding/templates/speedfunding.pt:27
-#| msgid "speedfund-help-us"
 msgid "speedfund-help-us-p1"
 msgstr "Endspurt - helft uns, die letzte Finanzierungslücke zu schließen. "
 
 #. Default: Now!
+#. Default: No matter how much we can achieve, your entire support will be of
+#. benefit for the project. It's no funding like 'all or nothing'. In case
+#. we'll
+#. get less than or equal to 70.000 €, all of the amount is being added to the
+#. funding of the C3S software development in the project supported by the
+#. Federal
+#. State of North-Rhine Westphalia.
 #: speedfunding/templates/speedfunding.pt:30
-#| msgid "speedfund-help-us"
+#: speedfunding/templates/speedfunding.pt:33
 msgid "speedfund-help-us-lead2"
 msgstr "Jetzt!"
 
 #. Default: The Current Status
-#: speedfunding/templates/speedfunding.pt:44
+#: speedfunding/templates/speedfunding.pt:47
 msgid "the-status"
 msgstr "Der aktuelle Stand"
 
 #. Default: There are
-#: speedfunding/templates/speedfunding.pt:46
+#: speedfunding/templates/speedfunding.pt:49
 msgid "the-status-span-1"
 msgstr "Es fehlen noch"
 
 #. Default: missing of
-#: speedfunding/templates/speedfunding.pt:48
+#: speedfunding/templates/speedfunding.pt:51
 msgid "the-status-span-2"
 msgstr "von"
 
 #. Default: needed
-#: speedfunding/templates/speedfunding.pt:49
+#: speedfunding/templates/speedfunding.pt:52
 msgid "the-status-span-3"
 msgstr " "
 
 #. Default: At our blog, you can find more details on cost and balance.
-#: speedfunding/templates/speedfunding.pt:51
+#: speedfunding/templates/speedfunding.pt:54
 msgid "the-status-blog-paragraph"
 msgstr ""
 "Auf unserem Blog findest Du mehr Informationen zu den Kosten und dem "
 "Kontostand."
 
 #. Default: (german)
-#: speedfunding/templates/speedfunding.pt:54
-#: speedfunding/templates/speedfunding.pt:136
+#: speedfunding/templates/speedfunding.pt:57
+#: speedfunding/templates/speedfunding.pt:139
 msgid "money-blog-linktitle-de"
 msgstr "(deutsch)"
 
 #. Default: (english)
-#: speedfunding/templates/speedfunding.pt:56
-#: speedfunding/templates/speedfunding.pt:138
+#: speedfunding/templates/speedfunding.pt:59
+#: speedfunding/templates/speedfunding.pt:141
 msgid "money-blog-linktitle-en"
 msgstr "(englisch)"
 
 #. Default: The Options
-#: speedfunding/templates/speedfunding.pt:60
+#: speedfunding/templates/speedfunding.pt:63
 msgid "the-options-h2"
 msgstr "Die Auswahlmöglichkeiten"
 
@@ -419,66 +423,65 @@ msgstr "Die Auswahlmöglichkeiten"
 #. selections from our crowdfunding. Of course, you can come back more often
 #. than
 #. once.
-#: speedfunding/templates/speedfunding.pt:61
+#: speedfunding/templates/speedfunding.pt:64
 msgid "the-options-p1"
 msgstr ""
 "Es stehen drei Optionen zur Auswahl. Die begehrtesten Dinge aus unserem "
 "Crowdfunding. Natürlich kannst Du das Formular mehrmals benutzen."
 
 #. Default: Donate Money
-#: speedfunding/templates/speedfunding.pt:69
+#: speedfunding/templates/speedfunding.pt:72
 msgid "donate-money-heading"
-msgstr "Spende Geld"
+msgstr "Spenden"
 
 #. Default: We are glad for any amount!
-#: speedfunding/templates/speedfunding.pt:70
+#: speedfunding/templates/speedfunding.pt:73
 msgid "donate-money-paragraph"
-msgstr "Wir freuen uns  über Spenden jedweder Höhe!"
+msgstr "Wir freuen uns über jede Spende!"
 
 #. Default: Donate by money transfer &raquo;
-#: speedfunding/templates/speedfunding.pt:73
+#: speedfunding/templates/speedfunding.pt:76
 msgid "button-donate-transfer"
 msgstr "Ich spende per Überweisung"
 
 #. Default: Donate via PayPal &raquo;
-#: speedfunding/templates/speedfunding.pt:79
+#: speedfunding/templates/speedfunding.pt:82
 msgid "button-donate-paypal"
 msgstr "Ich spende per PayPal"
 
 #. Default: Please note: PayPal will deduct a certain part of the payment.
-#: speedfunding/templates/speedfunding.pt:84
-#: speedfunding/templates/speedfunding.pt:112
+#: speedfunding/templates/speedfunding.pt:87
+#: speedfunding/templates/speedfunding.pt:115
 msgid "speedfunding-paypal-costs-note"
 msgstr "Hinweis: PayPal zieht von uns Gebühren ein."
 
 #. Default: Grab a T-Shirt
-#: speedfunding/templates/speedfunding.pt:89
+#: speedfunding/templates/speedfunding.pt:92
 msgid "tshirt-heading"
-msgstr "Hol Dir ein Shirt"
+msgstr "T-Shirt"
 
 #. Default: Here's the most picked motif from our crowdfunding for the very
 #. last
 #. time.
-#: speedfunding/templates/speedfunding.pt:90
+#: speedfunding/templates/speedfunding.pt:93
 msgid "tshirt-paragraph"
 msgstr ""
-"Hier ist das meistgewählte Motiv aus dem Crowdfunding -- zum letzten mal "
-"verfügbar."
+"Hier ist das meistgewählte Motiv aus dem Crowdfunding -- zum letzten Mal."
 
 #. Default: Pay by money transfer &raquo;
-#: speedfunding/templates/speedfunding.pt:101
+#: speedfunding/templates/speedfunding.pt:104
 msgid "button-shirt-transfer"
 msgstr "Ich zahle per Überweisung"
 
 #. Default: Pay via PayPal &raquo;
-#: speedfunding/templates/speedfunding.pt:107
+#: speedfunding/templates/speedfunding.pt:110
 msgid "button-shirt-paypal"
 msgstr "Ich zahle per PayPal"
 
 #. Default: Become a member!
-#: speedfunding/templates/speedfunding.pt:117
+#: speedfunding/templates/speedfunding.pt:120
 msgid "shares-heading"
-msgstr "Erwerbe Anteile."
+msgstr "Mitglied werden"
 
 #. Default: Here you can fill in your membership application. Print it, send it
 #. to
@@ -486,7 +489,7 @@ msgstr "Erwerbe Anteile."
 #. crowdfunding you're already in - but of course you can get more shares. You
 #. are
 #. helping the C3S most by becoming a member.
-#: speedfunding/templates/speedfunding.pt:118
+#: speedfunding/templates/speedfunding.pt:121
 msgid "shares-paragraph"
 msgstr ""
 "Hier könnt Ihr Euren Mitgliedsantrag stellen, ausdrucken, uns zusenden und "
@@ -496,12 +499,12 @@ msgstr ""
 "Option wählt."
 
 #. Default: Yes, I want to become a member of C3S! &raquo;
-#: speedfunding/templates/speedfunding.pt:121
+#: speedfunding/templates/speedfunding.pt:124
 msgid "button-become-member"
 msgstr "Ja! Ich möchte Mitglied der C3S werden!"
 
 #. Default: We are flashfunding the last missing amount
-#: speedfunding/templates/speedfunding.pt:130
+#: speedfunding/templates/speedfunding.pt:133
 msgid "speedfund-subheading-help"
 msgstr "Wir brauchen dringend Deine Unterstützung!"
 
@@ -511,7 +514,7 @@ msgstr "Wir brauchen dringend Deine Unterstützung!"
 #. speedfunding the last missing amount on our very own. No crowdfunding
 #. platform.
 #. We don't want to spend our members' money for any cost that can be avoided.
-#: speedfunding/templates/speedfunding.pt:133
+#: speedfunding/templates/speedfunding.pt:136
 msgid "speedfunding-help-paragraph-1"
 msgstr ""
 "Auf unserem Blog könnt Ihr nachlesen, wo die Kosten des letzten "
@@ -523,14 +526,14 @@ msgstr ""
 #. Default: In 2014, we want to start with the full public funding by the
 #. Federal
 #. State of North-Rhine Westphalia. It is 70.000 Euros that are missing.
-#: speedfunding/templates/speedfunding.pt:140
+#: speedfunding/templates/speedfunding.pt:143
 msgid "speedfunding-help-paragraph-2"
 msgstr ""
 "Wir wollen in 2014 mit der vollen Unterstützung von Nordrhein-Westfalen "
 "starten. Dazu fehlen 70.000 Euro."
 
 #. Default: You didn't join the crowdfunding last time?
-#: speedfunding/templates/speedfunding.pt:143
+#: speedfunding/templates/speedfunding.pt:146
 msgid "speedfund-subheading-last-time"
 msgstr "Ihr habt beim letzten Mal noch nicht mitgemacht?"
 
@@ -538,7 +541,7 @@ msgstr "Ihr habt beim letzten Mal noch nicht mitgemacht?"
 #. collecting society for music artists to distribute their music just the way
 #. they
 #. want to.
-#: speedfunding/templates/speedfunding.pt:146
+#: speedfunding/templates/speedfunding.pt:149
 msgid "speedfunding-help-paragraph-3"
 msgstr ""
 "Das ist Eure Chance, Geschichte zu schreiben! Eine faire "
@@ -548,21 +551,21 @@ msgstr ""
 #. Default: You did take part in the last crowdfunding? Well, then hurry up to
 #. three of your friends and tell them about our ideas - and why it is so damn
 #. important.
-#: speedfunding/templates/speedfunding.pt:149
+#: speedfunding/templates/speedfunding.pt:152
 msgid "speedfunding-help-paragraph-4"
 msgstr ""
 "Ihr habt beim letzten Mal schon mitgemacht? Dann erzählt drei Freunden von "
 "unserem Crowdfunding und warum es so wichtig ist."
 
 #. Default: More infos:
-#: speedfunding/templates/speedfunding.pt:153
+#: speedfunding/templates/speedfunding.pt:156
 msgid "speedfunding-help-paragraph-6"
 msgstr "Mehr Informationen:"
 
 #. Default: The video is part of the crowdfunding campaign for Cultural Commons
 #. Collecting Society (C3S), an initiative to found a new, fair and flexible
 #. collecting society to benefit independent musicians.
-#: speedfunding/templates/speedfunding.pt:173
+#: speedfunding/templates/speedfunding.pt:176
 msgid "crowdfunding-video-p1"
 msgstr ""
 "Dieses Video war Teil der Crowdfunding-Kampagne für die Cultural Commons "
@@ -582,7 +585,7 @@ msgstr "Das hat funktioniert."
 #. Default: We just sent you an email with further information.
 #: speedfunding/templates/success.pt:26
 msgid "success-further-information-p1"
-msgstr "Wir haben Die eine E-Mail mit weiteren Informationen geschickt."
+msgstr "Wir haben Dir eine E-Mail mit weiteren Informationen geschickt."
 
 #. Default: Start over again! &raquo;
 #: speedfunding/templates/success.pt:29
