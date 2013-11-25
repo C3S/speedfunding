@@ -22,9 +22,12 @@
     </p>
     <div class="row-fluid">
       <div class="span4">
-        <h2>Come again, come again!</h2>
-        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-        <p><a class="btn" href="/">Start over again! &raquo;</a></p>
+        <h2 i18n:translate="success-further-information-h2"></h2>
+        <p i18n:translate="success-further-information-p1">
+          We just sent you an email with further information.
+        </p>
+        <p><a class="btn" href="/"
+              i18n:translate="start-over">Start over again! &raquo;</a></p>
       </div>
     </div>
   </tal:block>
