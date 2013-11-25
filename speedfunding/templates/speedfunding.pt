@@ -18,11 +18,10 @@
   <tal:block metal:fill-slot="middle">
     <div class="jumbotron">
       <h1 i18n:translate="speedfund-form-title">
-        Come together and help to FlashFund the C3S!
+        FlashFunding!
       </h1>
-
       <p class="lead" i18n:translate="speedfund-help-us-lead">
-        Help to spark the C3S by lightning!
+        Come together and help to FlashFund the C3S!
       </p>
       <p class="lead" i18n:translate="speedfund-help-us-p1">
         This is the finish - help us to close the funding gap.
@@ -30,10 +29,10 @@
       <p class="lead" i18n:translate="speedfund-help-us-lead2">
         Now!
       </p>
-      <p class="lead" i18n:translate="speedfund-help-us-lead2">
-        No matter how much we can achieve, your entire support will be of benefit for the project. It's no funding like 'all or nothing'. In case we'll get less than or equal to 70.000 €, all of the amount is being added to the funding of the C3S software development in the project supported by the Federal State of North-Rhine Westphalia.
-      </p>
     </div>
+    <p i18n:translate="speedfund-help-us-lead3">
+      No matter how much we can achieve, your entire support will be of benefit for the project. It's no funding like 'all or nothing'. In case we'll get less than or equal to 70.000 €, all of the amount is being added to the funding of the C3S software development in the project supported by the Federal State of North-Rhine Westphalia.
+    </p>
     <hr />
   </tal:block>
   <tal:block metal:fill-slot="bottom">

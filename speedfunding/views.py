@@ -361,7 +361,8 @@ def shirt_view(request):
         """
         shirt_option = colander.SchemaNode(
             colander.String(),
-            title=_(u"Yes, I'll have a T-Shirt please! Send Me"),
+            title=_(u"I want to support the C3S by wearing my own t-shirt! "
+                    "Here's my choice:"),
             #widget=deform.widget.RadioChoiceWidget(
             #            widget=deform.widget.SelectSliderWidget(
             widget=deform.widget.Select2Widget(
@@ -410,7 +411,7 @@ def shirt_view(request):
         )
         postcode = colander.SchemaNode(
             colander.String(),
-            title=_(u'Post Code'),
+            title=_(u'Zip Code'),
             oid="postcode"
         )
         city = colander.SchemaNode(

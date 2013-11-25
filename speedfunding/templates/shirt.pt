@@ -18,7 +18,10 @@
     <link rel="stylesheet" href="${request.static_url('speedfunding:static/c3sM.css')}" type="text/css" media="screen" charset="utf-8" />
   </tal:block>
   <tal:block metal:fill-slot="middle">
-    <h1 i18n:translate="donate-form-title">Help fund the C3S!</h1>
+    <h2 i18n:translate="donate-form-title"
+        align="center">
+      This is the finish - help us to close the funding gap.
+    </h2>
   </tal:block>
   <tal:block metal:fill-slot="bottom">
     <div style="text-align:left;">
@@ -26,26 +29,22 @@
 	${message}
       </strong>
     </div> &nbsp;
-    <div style="text-align:right;">
-      <a href="/?en"><img src="static/images/en.png" title="English"
-				   alt="switch to English language" /></a>
-      <a href="/?de"><img src="static/images/de.png" title="Deutsch"
-				   alt="auf deutsche Sprache umschalten" /></a>
-    </div>
-    <h2 i18n:translate="shirt-form-headline" class="deform">T-Shirts!</h2>
     <!--! without PayPal -->
-    <p i18n:translate="shirt-form-common-p1" tal:condition="paypal is not True">
-     You want a shirt and want to transfer the money to us by yourself.
-     We need to know what size and fit the shirt should be.
-     We also need your address so we can send you the shirt.
-    </p>
+    <div tal:condition="paypal is not True">
+      <h2 i18n:translate="shirt-form-headline-transfer" class="deform">
+        Grab a T-Shirt and Pay by Money Transfer
+      </h2>
+      <p i18n:translate="shirt-form-common-p1">
+        Please tell us your shirt's size &amp; sex, and where to send the t-shirt to:
+      </p>
+    </div>
     <!--! with PAYPAL -->
     <div tal:condition="paypal is True">
+      <h2 i18n:translate="shirt-form-headline-paypal" class="deform">
+        Grab a T-Shirt and Pay via PayPal
+      </h2>
       <p i18n:translate="shirt-form-paypal-p1">
-        You want a shirt and want to transfer the money via Paypal.
-        We need to know what size and fit the shirt should be.
-        We will receive your address from PayPal so we can send you the shirt.
-        Make sure the address you entered in your PayPal account is right.
+        Please tell us your shirt's size &amp; sex and don't forget to make sure the address you entered in your PayPal account is right:
       </p><!-- shirt -->
       <form target="paypal" action="https://www.paypal.com/cgi-bin/webscr"
             method="post">
@@ -55,7 +54,7 @@
           <tr>
             <td>
               <input type="hidden" name="on0" value="C3S Shirt" />
-              C3S Shirt (choose your size and fit)
+              I want to support the C3S by wearing my own t-shirt! Here's my choice:
             </td>
           </tr>
           <tr>

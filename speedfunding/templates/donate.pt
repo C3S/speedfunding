@@ -29,12 +29,6 @@
 	${message}
       </strong>
     </div> &nbsp;
-    <div style="text-align:right;">
-      <a href="/?en"><img src="static/images/en.png" title="English"
-			  alt="switch to English language" /></a>
-      <a href="/?de"><img src="static/images/de.png" title="Deutsch"
-			  alt="auf deutsche Sprache umschalten" /></a>
-    </div>
     <h2 i18n:translate="donate-form-headline" class="deform">Money Transfer / Donation</h2>
     <p tal:condition="paypal is True"> <!--! IF PAYPAL -->
       <!-- spende -->
