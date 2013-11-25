@@ -5,7 +5,10 @@ from speedfunding.models import (
     TheTotal,
     DBSession,
 )
-from speedfunding.utils import make_confirmation_email
+from speedfunding.utils import (
+    make_donation_confirmation_emailbody,
+    make_shirt_confirmation_emailbody,
+)
 #from pyramid.response import Response
 from pyramid.view import view_config
 from pyramid.httpexceptions import HTTPFound
@@ -15,6 +18,7 @@ from pyramid.i18n import (
     get_locale_name
 )
 from pyramid_mailer import get_mailer
+from pyramid_mailer.message import Message
 from pkg_resources import resource_filename
 #from sqlalchemy.exc import DBAPIError
 #from .models import (
@@ -117,112 +121,6 @@ def speedfunding_view(request):
         print("== locale is :" + str(locale_name))
         print("== choosing :" + str(country_default))
 
-    # # declare a form
-    # class PaymentChoiceForm(colander.MappingSchema):
-    #     """
-    #     do you want to pay with paypal or not?
-    #     """
-    #     payment_option = colander.SchemaNode(
-    #         colander.String(),
-    #         title=_('I want to pay for the donation/shirt via paypal '
-    #                 '... or rather not.'),
-    #         widget=deform.widget.RadioChoiceWidget(
-    #             values=(
-    #                 ('paypal', _(u'Yes, PayPal is OK for me.')),
-    #                 ('transfer', _(u'No. I will transfer the money myself.')),
-    #             ),
-    #             default='paypal',
-    #         )
-    #     )
-
-    # schema = PaymentChoiceForm()
-
-    # form = deform.Form(
-    #     schema,
-    #     buttons=[  # stick three buttons on the form
-    #         deform.Button('donate', _(u'Donate')),
-    #         deform.Button('shirt', _(u'T-Shirt')),
-    #         deform.Button('shares', _(u'Shares')),
-    #     ])
-
-    # # if the form has been used and SUBMITTED, check contents
-    # # the form was submitted, if there is either 'donate',
-    # # 'shirt' or 'share' in request.POST
-    # submitted = (
-    #     ('donate' in request.POST)
-    #     or ('shirt' in request.POST)
-    #     or ('shares' in request.POST)
-    # )
-    # if submitted is True:
-    #     print("submitted!")
-
-    # if submitted:  # someone klicked a button, but which one?
-
-    #     if 'shares' in request.POST:
-    #         print("shares was chosen.")
-    #         return HTTPFound(
-    #             location=request.route_url('yes'),  # https://yes.c3s.cc
-    #         )
-
-    #     controls = request.POST.items()
-    #     try:
-    #         appstruct = form.validate(controls)
-    #     except deform.ValidationFailure, e:
-    #         print(e)
-    #         request.session.flash(
-    #             _(u"Please note: There were errors, "
-    #               "please check the form below."),
-    #             'message_above_form',
-    #             allow_duplicate=False)
-    #         # if there were errors, present the form with error messages
-    #         return{'form': e.render()}
-
-    #     request.session.pop_flash('message_above_form')
-    #     # if the form validated correctly, use the data given
-    #     print("the appstruct: %s" % appstruct)
-
-    #     if 'shirt' in request.POST:
-    #         if appstruct['payment_option'] == 'paypal':
-    #             print("it is paypal, do something")
-    #             request._paypal = True
-    #         if appstruct['payment_option'] == 'transfer':
-    #             print("it is transfer, do something")
-    #             request._paypal = False
-
-    #         return HTTPFound(
-    #             location=request.route_url('shirt'),
-    #             headers=request.response.headers,
-    #         )
-
-    #     if ('donate' in request.POST):
-    #         if appstruct['payment_option'] == 'paypal':
-    #             print("it is paypal, do something")
-    #             #request._paypal = True
-    #             request.response.set_cookie('_paypal_', 'yes')
-    #             request.session['appstruct'] = appstruct
-    #             request.session.flash('DEBUG: with paypal',
-    #                                   'message_above_form')
-    #             return HTTPFound(
-    #                 location=request.route_url('donate')
-    #                 # redirect to paypal donation options
-    #             )
-
-    #         if appstruct['payment_option'] == 'transfer':
-    #             print("it is transfer, do something")
-    #             #request._paypal = False
-    #             request.response.set_cookie('_paypal_', 'no')
-    #             request.session['appstruct'] = appstruct
-    #             request.session.flash('DEBUG: no paypal',
-    #                                   'message_above_form')
-    #         return HTTPFound(
-    #             location=request.route_url('donate'),
-    #             headers=request.response.headers,
-    #         )
-
-    # # if not submitted: show form
-    # html = form.render()
-    html = ''
-
     _the_total = TheTotal.get_total()
     try:
         _missing_sum = 70000 - int(_the_total.amount_actual)
@@ -234,8 +132,7 @@ def speedfunding_view(request):
         print("the error: %s" % a)
         _missing_sum = "70000"
 
-    return {'form': html,
-            'the_total': '12.345,67',
+    return {'the_total': '12.345,67',
             'missing_sum': _missing_sum,
             'project': 'speedfunding'}
 
@@ -337,7 +234,8 @@ def donate_view(request):
         buttons=[
             deform.Button('donate', _(u'Yes, I want to donate!')),
             deform.Button('go_back', _(u'Go back, let me start over again.')),
-        ])
+        ],
+        renderer=zpt_renderer)
 
     # if the form has been used and SUBMITTED, check contents
     submitted = (('donate' in request.POST) or ('go_back' in request.POST))
@@ -377,8 +275,14 @@ def donate_view(request):
             except:
                 print("failed to persist")
             #try:
+            message = Message(
+                subject=_("[fund C3S!] thanks for your donation!"),
+                sender="yes@c3s.cc",
+                recipients=[_donation.email, ],
+                body=make_donation_confirmation_emailbody(_donation)
+            )
             mailer = get_mailer(request)
-            mailer.send(make_confirmation_email(_donation))
+            mailer.send(message)
             #except:
             #    print("failed to send the mail")
 
@@ -527,7 +431,7 @@ def shirt_view(request):
         the shirt form comprises shirt option and personal data
         """
         shirt_data = TShirt(
-            title=_(u'choose shirt size')
+            title=_(u'Choose a Shirt')
         )
         personalData = PersonalData(
             title=_('Personal Data')
@@ -540,7 +444,8 @@ def shirt_view(request):
         buttons=[
             deform.Button('order_shirt', _(u'Yes, I want this T-Shirt!')),
             deform.Button('go_back', _(u'Go back, let me start over again.')),
-        ])
+        ],
+        renderer=zpt_renderer)
 
     # if the form has been used and SUBMITTED, check contents
     submitted = (('order_shirt' in request.POST)
@@ -574,11 +479,22 @@ def shirt_view(request):
                 shirt_size=appstruct['shirt_data']['shirt_option'],
                 comment='',
             )
+            # persist
             try:
                 DBSession.add(_shirt)
                 DBSession.flush()
             except:
                 print("failed to persist")
+            # mail out
+            message = Message(
+                subject=_("[fund C3S!] thank you for choosing a shirt!"),
+                sender="yes@c3s.cc",
+                recipients=[_shirt.email],
+                body=make_shirt_confirmation_emailbody(_shirt)
+            )
+            mailer = get_mailer(request)
+            mailer.send(message)
+            print("message sent!")
 
         except deform.ValidationFailure, e:
             print(e)

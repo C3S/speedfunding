@@ -2,22 +2,11 @@
 import unittest
 from pyramid import testing
 from pyramid_mailer.message import Message
-
-mock_appstruct = {
-    'speed_id': 'SPEED_ID_FOO',
-    'firstname': u'Anne',
-    'lastname': u'Gilles',
-    'email': u'devnull@c3s.cc',
-    'address1': 'addr one',
-    'address2': 'addr two',
-    'postcode': u'54321',
-    'city': u'Müsterstädt',
-    'country': u'some country',
-    'locale': u'EN',
-    'shirt_size': '3',
-    'donation': '1234',
-    'date_of_submission': '2013-09-09 08:44:47.251588',
-}
+from speedfunding.models import (
+    Speedfundings,
+    DBSession,
+)
+import transaction
 
 
 class TestUtilities(unittest.TestCase):
@@ -27,20 +16,76 @@ class TestUtilities(unittest.TestCase):
 
     def setUp(self):
         self.config = testing.setUp()
+        from sqlalchemy import create_engine
+        engine = create_engine('sqlite://')
+        from speedfunding.models import (
+            Base,
+        )
+        DBSession.configure(bind=engine)
+        Base.metadata.create_all(engine)
+        with transaction.manager:
+            model1 = Speedfundings(  # english
+                firstname=u'first',
+                lastname=u'last',
+                email=u'noreply@c3s.cc',
+                address1=u'some',
+                address2=u'where',
+                postcode=u'98765',
+                city=u'over',
+                country=u'some country',
+                locale=u'en',
+                donation=u'3',
+                shirt_size=u'3',
+                comment=u'some comment.',
+            )
+            DBSession.add(model1)
+        with transaction.manager:
+            model2 = Speedfundings(  # german
+                firstname=u'first',
+                lastname=u'last',
+                email=u'noreply@c3s.cc',
+                address1=u'some',
+                address2=u'where',
+                postcode=u'98765',
+                city=u'over',
+                country=u'some country',
+                locale=u'de',
+                donation=u'3',
+                shirt_size=u'3',
+                comment=u'some comment.',
+            )
+            DBSession.add(model2)
 
-    def test_make_confirmation_email_en(self):
-        from speedfunding.utils import make_confirmation_email
+    def tearDown(self):
+        DBSession.remove()
+        testing.tearDown()
 
-        result = make_confirmation_email(mock_appstruct)
-        self.assertTrue(isinstance(result, Message))
-        #print dir(result)
-        self.assertTrue('your pledge' in result.body)
+    def test_make_donation_confirmation_emailbody_en(self):
+        from speedfunding.utils import make_donation_confirmation_emailbody
+        _item = Speedfundings.get_by_id(1)
 
-    def test_make_confirmation_email_de(self):
-        from speedfunding.utils import make_confirmation_email
+        result = make_donation_confirmation_emailbody(_item)
+        self.assertTrue('your pledge' in result)
+        self.assertTrue('appreciate your donation' in result)
 
-        _mock_appstruct_DE = mock_appstruct
-        _mock_appstruct_DE['locale'] = u'DE'
-        result = make_confirmation_email(_mock_appstruct_DE)
-        self.assertTrue(isinstance(result, Message))
-        print result.body
+    def test_make_donation_confirmation_emailbody_de(self):
+        from speedfunding.utils import make_donation_confirmation_emailbody
+        _item = Speedfundings.get_by_id(2)
+        result = make_donation_confirmation_emailbody(_item)
+        self.assertTrue('Deine Spende' in result)
+        #print result
+
+    def test_make_shirt_confirmation_email_en(self):
+        from speedfunding.utils import make_shirt_confirmation_emailbody
+        _item = Speedfundings.get_by_id(1)
+
+        result = make_shirt_confirmation_emailbody(_item)
+        self.assertTrue('shirt' in result)
+        self.assertTrue('You have chosen a t-shirt' in result)
+
+    def test_make_shirt_confirmation_email_de(self):
+        from speedfunding.utils import make_shirt_confirmation_emailbody
+        _item = Speedfundings.get_by_id(2)
+        result = make_shirt_confirmation_emailbody(_item)
+        self.assertTrue(u'Du hast ein T-Shirt gewählt' in result)
+        #print result
