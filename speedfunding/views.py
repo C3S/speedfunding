@@ -132,7 +132,7 @@ def speedfunding_view(request):
         print("the error: %s" % a)
         _missing_sum = "70000"
 
-    return {'the_total': '12.345,67',
+    return {'the_total': _the_total.amount_actual,
             'missing_sum': _missing_sum,
             'project': 'speedfunding'}
 

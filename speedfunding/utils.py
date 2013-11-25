@@ -28,10 +28,10 @@ def make_donation_confirmation_emailbody(_input):
 
     #import pprint
     #pprint.pprint(_input)
-    print d_key.get(_input.donation)
+    #print d_key.get(_input.donation)
 
     if 'de' in _input.locale:  # GERMAN
-        print('lang is de')
+        #print('lang is de')
         _body = (
             u"""Liebe_r Supporter_in,
 
@@ -67,7 +67,7 @@ Das C3S-Team
 """)
 
     else:  # NON-GERMAN --> ENG
-        print('lang is not de')
+        #print('lang is not de')
         _body = (
             u"""Dear supporter,
 

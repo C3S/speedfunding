@@ -181,7 +181,7 @@ class TheTotal(Base):
         how much money do we have?
         """
         _id = DBSession.query(cls).count()
-        print("_id: %s" % _id)
+        #print("_id: %s" % _id)
         # return
         return TheTotal.get_by_id(_id)
         #pass  # read the total from the last entry...

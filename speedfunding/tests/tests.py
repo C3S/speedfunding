@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import os
 import unittest
 import transaction
 
@@ -11,39 +12,62 @@ class TestSpeedfundingsSuccessCondition(unittest.TestCase):
     def setUp(self):
         self.config = testing.setUp()
         from sqlalchemy import create_engine
-        engine = create_engine('sqlite://')
+        engine = create_engine('sqlite:///tests.db')
         from speedfunding.models import (
             Base,
             Speedfundings,
+            TheTotal,
         )
         DBSession.configure(bind=engine)
         Base.metadata.create_all(engine)
         with transaction.manager:
             model = Speedfundings(
-                firstname='first',
-                lastname='last',
-                email='noreply@c3s.cc',
-                address1='some',
-                address2='where',
-                postcode='98765',
-                city='over',
-                country='CC',
-                locale='AT',
-                donation='',
-                shirt_size='',
-                comment='some comment.',
+                firstname=u'first',
+                lastname=u'last',
+                email=u'noreply@c3s.cc',
+                address1=u'some',
+                address2=u'where',
+                postcode=u'98765',
+                city=u'over',
+                country=u'CC',
+                locale=u'AT',
+                donation=u'',
+                shirt_size=u'',
+                comment=u'some comment.',
             )
             DBSession.add(model)
+        # a total
+        with transaction.manager:
+            a_total = TheTotal(
+                amount_actual=u'4200',
+                amount_promised=u'5000',
+                #time='2013-11-20',
+                num_shirts=u'0'
+            )
+            #try:
+            DBSession.add(a_total)
+            DBSession.flush()
+            #print("adding a total")
+            #except:
+            #    print("could not add the total.")
+            #    # pass
 
     def tearDown(self):
         DBSession.remove()
         testing.tearDown()
+        os.remove('tests.db')
 
     def test_passing_view(self):
         from speedfunding.views import speedfunding_view
         request = testing.DummyRequest()
         info = speedfunding_view(request)
-        self.assertTrue('paypal' in info['form'])
+        #print("info:")
+        #import pprint
+        #pprint.pprint(info)
+        self.assertTrue('missing_sum' in info)
+        self.assertTrue('the_total' in info)
+        self.assertTrue(
+            int(info['the_total']) + int(info['missing_sum']) == 70000)
         self.assertEqual(info['project'], 'speedfunding')
 
 
@@ -138,9 +162,9 @@ class TestMyViewFailureCondition(unittest.TestCase):
         DBSession.remove()
         testing.tearDown()
 
-    def test_failing_view(self):
-        from speedfunding.views import speedfunding_view
-        request = testing.DummyRequest()
-        info = speedfunding_view(request)
-        print(info)
+#    def test_failing_view(self):
+#        from speedfunding.views import speedfunding_view
+#        request = testing.DummyRequest()
+#        info = speedfunding_view(request)
+#        #print(info)
 #        self.assertEqual(info.status_int, 500)
