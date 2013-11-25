@@ -23,8 +23,8 @@
   <body>
     <div id="wrap">
       <div id="main">
-        <h1>Dashboard</h1>  
-        <p>Number of data sets: ${_number_of_datasets}</p>
+        <h1>Dashboard</h1>
+        <p>Number of data sets: ${_number_of_datasets}. To set the sum already collected go to <a href="/total">/total</a></p>
         <p>Find entry by confirmation code:
           <form action="${request.route_url('dashboard', number=0)}" method="post">
             <input name="code_to_show" type="text"
