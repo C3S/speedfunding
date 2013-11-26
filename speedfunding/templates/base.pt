@@ -4,9 +4,9 @@
       xmlns:tal="http://xml.zope.org/namespaces/tal"
       xmlns:metal="http://xml.zope.org/namespaces/metal">
   <head>
-    <title i18n:translate="speedfunding-form-title">Speedfunding for Cultural Commons Collecting Society (C3S SCE)</title>
+    <title i18n:translate="speedfunding-form-title">FlashFund the C3S!</title>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-    <meta name="keywords" content="Speedfunding for C3S SCE"/>
+    <meta name="keywords" content="FlashFunding for C3S SCE"/>
     <meta name="description" content="" />
     <link rel="shortcut icon" href="${request.static_url('speedfunding:static/favicon.ico')}" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -53,10 +53,10 @@
           &nbsp;<br />
           &copy; Copyright 2013, C3S SCE. &nbsp; &nbsp;
           <!-- <a target="_blank" style="text-decoration:none; color:black; font-size:66%"
-	       href="https://www.transifex.com/projects/p/Speedfunding/resource/POT/"
+	       href="https://www.transifex.com/projects/p/FlashFunding/resource/POT/"
 	       title="Want more langages? Help us translate on Transifex.com">
 	       <img border="0" alt="image shows languages and percentages translated"
-	            src="static/Speedfunding-transifex-languages.png"
+	            src="static/FlashFunding-transifex-languages.png"
 	            style="vertical-align: middle;" />  &nbsp; &nbsp;
 	       <img border="0" alt="transifex.com logo"
 	            src="static/transifex-logo.png"
