@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: speedfunding 0.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2013-11-25 19:12+0100\n"
-"PO-Revision-Date: 2013-11-25 19:13+0100\n"
+"POT-Creation-Date: 2013-11-25 19:18+0100\n"
+"PO-Revision-Date: 2013-11-26 11:13+0100\n"
 "Last-Translator: Christoph Scheid <christoph.scheid@c3s.cc>\n"
 "Language-Team: de <LL@li.org>\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -306,7 +306,7 @@ msgstr "FlashFunding für die C3S"
 #. Default: This is the finish - help us to close the funding gap.
 #: speedfunding/templates/donate.pt:21 speedfunding/templates/shirt.pt:21
 msgid "donate-form-title"
-msgstr "Speedfunde die Cultural Commons Collecting Society (C3S)"
+msgstr "FlashFunde die Cultural Commons Collecting Society (C3S)"
 
 #. Default: Money Transfer / Donation
 #: speedfunding/templates/donate.pt:32
@@ -366,7 +366,6 @@ msgstr "Jetzt!"
 
 #. Default: +++ 25th November to 9th December 2013 +++
 #: speedfunding/templates/speedfunding.pt:32
-#| msgid "speedfunding-form-title"
 msgid "speedfunding-timespan"
 msgstr "+++ 25. November bis 9. Dezember 2013 +++"
 
@@ -381,9 +380,10 @@ msgstr "+++ 25. November bis 9. Dezember 2013 +++"
 msgid "speedfund-help-us-lead3"
 msgstr ""
 "Egal, wie viel wir erreichen, Eure komplette Unterstützung kommt dem Projekt "
-"zugute. Es ist kein \"Alles oder nichts\"-Funding. Erzielen wir keine 70.000 "
-"€, fließt der erreichte Betrag in die Finanzierung der C3S-Software-"
-"Entwicklung des NRW-Projekts."
+"zugute. Es ist kein \"Alles oder nichts\"-Funding. Bis zur Summe von 70.000 "
+"€ wird jeder gespendete Euro mit einem Euro Fördermittel verdoppelt. Auch "
+"wenn die Summe überschritten wird, fließt der erreichte Betrag in die "
+"Finanzierung der C3S."
 
 #. Default: The Current Status
 #: speedfunding/templates/speedfunding.pt:49
