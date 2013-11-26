@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: speedfunding 0.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2013-11-25 19:18+0100\n"
-"PO-Revision-Date: 2013-11-26 11:13+0100\n"
+"POT-Creation-Date: 2013-11-26 11:17+0100\n"
+"PO-Revision-Date: 2013-11-26 11:18+0100\n"
 "Last-Translator: Christoph Scheid <christoph.scheid@c3s.cc>\n"
 "Language-Team: de <LL@li.org>\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -298,7 +298,7 @@ msgstr "Ja, ich will das T-Shirt"
 msgid "[fund C3S!] thank you for choosing a shirt!"
 msgstr "[helfe C3S!] Danke für die Auswahl des T-Shirts!"
 
-#. Default: Speedfunding for Cultural Commons Collecting Society (C3S SCE)
+#. Default: FlashFund the C3S!
 #: speedfunding/templates/base.pt:7
 msgid "speedfunding-form-title"
 msgstr "FlashFunding für die C3S"
