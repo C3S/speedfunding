@@ -139,6 +139,11 @@ class Speedfundings(Base):
         #return q.order_by(order_by)[:how_many]
         return q
 
+    @classmethod
+    def delete_by_id(cls, _id):
+        """delete one by id"""
+        return DBSession.query(cls).filter(cls.id == _id).delete()
+
 
 Index('speedfunding_index',
       Speedfundings.speed_id,
