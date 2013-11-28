@@ -5,20 +5,14 @@
       xmlns:metal="http://xml.zope.org/namespaces/metal"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       i18n:domain="speedfunding">
-      <!-- metal:use-macro="base" -->
-
   <head>
     <title>FlashFunding Total</title>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-    <meta name="keywords" content="Membership Application to join C3S SCE" />
-    <meta name="description" content="" />
-    <link rel="shortcut icon" href="${request.static_url('speedfunding:static/favicon.ico')}" />
-    <!-- link rel="stylesheet" href="${request.static_url('speedfunding:static/pylons.css')}" type="text/css" media="screen" charset="utf-8" / -->
-    <tal:block metal:define-slot="deform-js-css"></tal:block>
-    <!--[if lte IE 6]>
-        <link rel="stylesheet" href="${request.static_url('speedfunding:static/ie6.css')}"
-	      type="text/css" media="screen" charset="utf-8" />
-        <![endif]-->
+    <link href="/static/bootstrap.v2.3.2/css/bootstrap.css" rel="stylesheet"/>
+    <script src="${request.static_url('deform:static/bootstrap.v2.3.2/js/bootstrap.js')}"
+            type="text/javascript"></script>
+    <link rel="stylesheet" href="${request.static_url('speedfunding:static/c3sM.css')}"
+          type="text/css" media="screen" charset="utf-8" />
   </head>
   <body>
     <div id="wrap">
@@ -28,14 +22,21 @@
           <div id="form" tal:content="structure form"/>
         </p>
       </div>
+      <p>
+        The List shows the last total statuses in reverse chronological order.
+        See the result on the
+        <a href="${request.route_url('speedfund')}">
+          landing page
+        </a>
+      </p>
       <div>
-        <table border="1" cellpadding="10" width="90%">
+        <table cellpadding="10" width="90%" class="table table-striped">
           <tr>
             <td>id</td>
             <td>the sum</td>
             <td>promised sum</td>
             <td>num shirts</td>
-            <td>email</td>
+            <td>date/time</td>
           </tr>
           <tr tal:repeat="total totals">
             <td>${total.id}</td>

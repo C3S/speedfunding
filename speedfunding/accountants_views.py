@@ -67,6 +67,21 @@ def new_total(request):
     This view lets accountants set the amount collected
     to be displayed on the front page
     """
+    def sort_totals_reversed(objects):
+        """
+        show the objects in reverse order (highest id first)
+        """
+        return sorted(objects, key=lambda obj: obj.id, reverse=True)
+
+    try:
+        last_total = TheTotal.get_total()
+        last_sum = last_total.amount_actual
+        last_promised = last_total.amount_promised
+        last_shirts = last_total.num_shirts
+    except:
+        last_sum = 0
+        last_promised = 0
+        last_shirts = 0
 
     class NewTotal(colander.MappingSchema):
         """
@@ -74,18 +89,24 @@ def new_total(request):
         """
         amount_collected = colander.SchemaNode(
             colander.Int(),
-            title=_(u"sum collected"),
+            title=_(
+                u"Sum collected (Euro, Integer) "
+                "(This amount will be deducted from 70000 and "
+                "the result be displayed on the landing page)"),
             validator=colander.Range(0, 200000),
+            default=last_sum,
             oid="sum",
         )
         amount_promised = colander.SchemaNode(
             colander.Int(),
-            title=_(u"promised"),
+            title=_(u"Sum promised (Euro, Integer)"),
+            default=last_promised,
             oid="promised",
         )
         num_shirts = colander.SchemaNode(
             colander.Int(),
-            title=_(u"shirts"),
+            title=_(u"Number of shirts (Integer)"),
+            default=last_shirts,
             oid="shirts",
         )
 
@@ -103,7 +124,7 @@ def new_total(request):
 
     # get and show the former totals
     _totals = TheTotal.get_listing(
-        TheTotal.id.asc())
+        TheTotal.id.desc())
 
     # if the form has been used and SUBMITTED, check contents
     if 'submit' in request.POST:
@@ -128,6 +149,9 @@ def new_total(request):
             try:
                 DBSession.add(_new_total)
                 DBSession.flush()
+                _totals = TheTotal.get_listing(
+                    TheTotal.id.desc())
+
             except:
                 print("could not write to DB. Error: ")
 
@@ -146,7 +170,7 @@ def new_total(request):
 
     return {
         'form': html,
-        'totals': _totals,
+        'totals': sort_totals_reversed(_totals),
     }
 
 
