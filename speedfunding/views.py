@@ -8,6 +8,7 @@ from speedfunding.models import (
 from speedfunding.utils import (
     make_donation_confirmation_emailbody,
     make_shirt_confirmation_emailbody,
+    accountant_mail,
 )
 #from pyramid.response import Response
 from pyramid.view import view_config
@@ -284,6 +285,7 @@ def donate_view(request):
             )
             mailer = get_mailer(request)
             mailer.send(message)
+            mailer.send(accountant_mail(_donation))
             #except:
             #    print("failed to send the mail")
 
@@ -496,6 +498,7 @@ def shirt_view(request):
             )
             mailer = get_mailer(request)
             mailer.send(message)
+            mailer.send(accountant_mail(_shirt))
             print("message sent!")
 
         except deform.ValidationFailure, e:

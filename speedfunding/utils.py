@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
 
+from speedfunding.gnupg_encrypt import encrypt_with_gnupg
+from pyramid_mailer.message import Message
+
 
 def make_donation_confirmation_emailbody(_input):
     """
@@ -262,3 +265,77 @@ Das C3S-Team
 P.S.: Mach doch mal ein Foto mit dem T-Shirt - sowas würde auf unserer Site
 exzellent aussehen! (an Wolfgang: yes@c3s.cc)
 """
+
+
+def make_mail_body(funding):
+    """
+    construct a multiline string to be used as the emails body
+    """
+    the_body = u"""
+Yay!
+we got some funding through the form:
+speed id:                       %s
+donation:                       %s
+shirt:                          %s
+
+first name:                     %s
+last name:                      %s
+email:                          %s
+address1                        %s
+address2                        %s
+postcode:                       %s
+city:                           %s
+country:                        %s
+locale:                         %s
+comment:                         %s
+
+that's it.. bye!""" % (
+        funding.speed_id,
+        funding.donation,
+        funding.shirt_size,
+        funding.firstname,
+        funding.lastname,
+        funding.email,
+        funding.address1,
+        funding.address2,
+        funding.postcode,
+        funding.city,
+        funding.country,
+        funding.locale,
+        funding.comment,
+    )
+    return the_body
+
+
+def accountant_mail(appject):
+    """
+    this function returns a message object for the mailer
+
+    it consists of a mail body and an attachment attached to it
+    """
+    unencrypted = make_mail_body(appject)
+    #print("accountant_mail: mail body: \n%s") % unencrypted
+    #print("accountant_mail: type of mail body: %s") % type(unencrypted)
+    encrypted = encrypt_with_gnupg(unencrypted)
+    #print("accountant_mail: mail body (enc'd): \n%s") % encrypted
+    #print("accountant_mail: type of mail body (enc'd): %s") % type(encrypted)
+
+    message_recipient = 'yes@c3s.cc'
+
+    message = Message(
+        subject="[C3S FlashFunding] Yes! a new funding item",
+        sender="noreply@c3s.cc",
+        recipients=[message_recipient],
+        body=encrypted
+    )
+    #print("accountant_mail: csv_payload: \n%s") % generate_csv(appstruct)
+    #print(
+    #    "accountant_mail: type of csv_payload: \n%s"
+    #) % type(generate_csv(appstruct))
+    #csv_payload_encd = encrypt_with_gnupg(generate_csv(appject))
+    #print("accountant_mail: csv_payload_encd: \n%s") % csv_payload_encd
+    #print(
+    #    "accountant_mail: type of csv_payload_encd: \n%s"
+    #) % type(csv_payload_encd)
+
+    return message

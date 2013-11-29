@@ -12,6 +12,8 @@ requires = [
     'Babel',
     'cryptacular',
     'deform',
+    'gnupg',
+    'python-gnupg',
     'lingua',
     'pyramid',
     'pyramid_beaker',
