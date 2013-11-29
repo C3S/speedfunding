@@ -95,12 +95,14 @@
           <p i18n:translate='tshirt-paragraph'>
             Here's the most picked motif from our crowdfunding for the very last time.
           </p>
-          <p>
+          <p align="center">
             <a href="http://archive.c3s.cc/stuff/t_shirt_a.png">
               <img src="${request.static_url('speedfunding:static/t_shirt_a_cut_small.png')}"
                    title="click for larger image" />
             </a>
-            <span style="font-size:250%;">&nbsp;&nbsp;35 &euro;</span>
+            <br />&nbsp;
+            <br />&nbsp;
+            <span style="font-size:250%;">35 &euro;</span>
           </p>
           <p>
             <a class="btn btn-large btn-success" href="/shirt"
