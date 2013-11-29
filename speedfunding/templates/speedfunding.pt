@@ -128,6 +128,9 @@
           <p><a class="btn btn-large btn-success" href="https://yes.c3s.cc"
                 i18n:translate="button-become-member">
               Yes, I want to become a member of C3S! &raquo;</a></p>
+          <p><a class="btn btn-large btn-warning" href="http://archive.c3s.cc/legal/beitritt-koerperschaft.pdf"
+                i18n:translate="button-become-member-nonhuman">
+              Membership for Companies &amp; Institutions &raquo;</a></p>
         </div>
       </div>
       <hr />
