@@ -133,8 +133,30 @@ def speedfunding_view(request):
         print("the error: %s" % a)
         _missing_sum = "70000"
 
+    if 'de' in locale_name:
+        import locale
+        locale.setlocale(locale.LC_ALL, 'de_DE.utf-8')
+    if 'en' in locale_name:
+        import locale
+        locale.setlocale(locale.LC_ALL, 'en_GB.utf-8')
+    _the_date = _the_total.time.strftime('%x %X')
+
+    def _insert_thousands_separator(amount):
+        # print("the locale: %s" % locale_name)
+        #amount = '{:,}'.format(int(amount))
+        amount = locale.format('%d', int(amount), 1)
+        # print("the type of amount: %s" % type(amount))
+        #if 'en' in locale.getlocale():
+        #    amount = amount.replace(',', '.')
+        return amount
+
+    target_sum = 70000
+
     return {'the_total': _the_total.amount_actual,
-            'missing_sum': _missing_sum,
+            'the_time': _the_date,
+            'target_sum': _insert_thousands_separator(target_sum),
+            'promised_sum': _insert_thousands_separator(_the_total.amount_promised),
+            'missing_sum': _insert_thousands_separator(_missing_sum),
             'project': 'speedfunding'}
 
 

@@ -46,12 +46,18 @@
 			  alt="auf deutsche Sprache umschalten" /></a>
     </div>
     <div class="row-fluid">
-      <h2 i18n:translate='the-status'>The Current Status</h2>
+      <h2>
+        <span i18n:translate='the-status'>The Current Status
+        </span>  (${the_time})
+      </h2>
       <h3>
 	<span i18n:translate='the-status-span-1'>There are</span>
-        <span style="color:red;">&nbsp;${missing_sum} &euro;</span>
-	<span i18n:translate='the-status-span-2'>missing of</span>&nbsp;  70.000,00 &euro;
-	<span i18n:translate='the-status-span-3'>needed</span>.
+        <span style="color:red;">${missing_sum}&euro;</span>
+	<span i18n:translate='the-status-span-2'>missing of</span> ${target_sum}&euro;
+        <span i18n:translate='the-status-span-3'>required</span>.
+        <span i18n:translate='the-status-span-4'>Another</span>
+          ${promised_sum}&euro;
+        <span i18n:translate='the-status-span-5'>are yet unconfirmed</span>.
       </h3>
       <p i18n:translate='the-status-blog-paragraph'>
         At our blog, you can find more details on cost and balance.
@@ -128,7 +134,8 @@
           <p><a class="btn btn-large btn-success" href="https://yes.c3s.cc"
                 i18n:translate="button-become-member">
               Yes, I want to become a member of C3S! &raquo;</a></p>
-          <p><a class="btn btn-large btn-warning" href="http://archive.c3s.cc/legal/beitritt-koerperschaft.pdf"
+          <p><a class="btn btn-large btn-warning"
+                href="http://archive.c3s.cc/legal/beitritt-koerperschaft.pdf"
                 i18n:translate="button-become-member-nonhuman">
               Membership for Companies &amp; Institutions &raquo;</a></p>
         </div>
