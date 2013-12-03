@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: speedfunding 0.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2013-11-29 03:23+0100\n"
+"POT-Creation-Date: 2013-12-03 11:56+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -42,8 +42,8 @@ msgid "Reset"
 msgstr ""
 
 #: speedfunding/accountants_views.py:162 speedfunding/accountants_views.py:232
-#: speedfunding/accountants_views.py:510 speedfunding/views.py:295
-#: speedfunding/views.py:507
+#: speedfunding/accountants_views.py:510 speedfunding/views.py:317
+#: speedfunding/views.py:529
 msgid "Please note: There were errors, please check the form below."
 msgstr ""
 
@@ -175,123 +175,123 @@ msgstr ""
 msgid "other"
 msgstr ""
 
-#: speedfunding/views.py:202
+#: speedfunding/views.py:224
 msgid "I want to support C3S with my donation:"
 msgstr ""
 
-#: speedfunding/views.py:213
+#: speedfunding/views.py:235
 msgid "Email"
 msgstr ""
 
-#: speedfunding/views.py:223
+#: speedfunding/views.py:245
 msgid "The Donation"
 msgstr ""
 
-#: speedfunding/views.py:227
+#: speedfunding/views.py:249
 msgid "Please tell us your email address in case we need to contact you:"
 msgstr ""
 
-#: speedfunding/views.py:237
+#: speedfunding/views.py:259
 msgid "Yes, I want to donate!"
 msgstr ""
 
-#: speedfunding/views.py:238 speedfunding/views.py:450
+#: speedfunding/views.py:260 speedfunding/views.py:472
 msgid "Go back, let me start over again."
 msgstr ""
 
-#: speedfunding/views.py:281
+#: speedfunding/views.py:303
 msgid "[fund C3S!] thanks for your donation!"
 msgstr ""
 
-#: speedfunding/views.py:366
+#: speedfunding/views.py:388
 msgid "I want to support the C3S by wearing my own t-shirt! Here's my choice:"
 msgstr ""
 
-#: speedfunding/views.py:372
+#: speedfunding/views.py:394
 msgid "S €35,00 EUR"
 msgstr ""
 
-#: speedfunding/views.py:373
+#: speedfunding/views.py:395
 msgid "M €35,00 EUR"
 msgstr ""
 
-#: speedfunding/views.py:374
+#: speedfunding/views.py:396
 msgid "L €35,00 EUR"
 msgstr ""
 
-#: speedfunding/views.py:375
+#: speedfunding/views.py:397
 msgid "XL €35,00 EUR"
 msgstr ""
 
-#: speedfunding/views.py:376
+#: speedfunding/views.py:398
 msgid "XXL €35,00 EUR"
 msgstr ""
 
-#: speedfunding/views.py:377
+#: speedfunding/views.py:399
 msgid "S (Ladyfit) €35,00 EUR"
 msgstr ""
 
-#: speedfunding/views.py:378
+#: speedfunding/views.py:400
 msgid "M (Ladyfit) €35,00 EUR"
 msgstr ""
 
-#: speedfunding/views.py:379
+#: speedfunding/views.py:401
 msgid "L (Ladyfit) €35,00 EUR"
 msgstr ""
 
-#: speedfunding/views.py:380
+#: speedfunding/views.py:402
 msgid "XL (Ladyfit) €35,00 EUR"
 msgstr ""
 
-#: speedfunding/views.py:381
+#: speedfunding/views.py:403
 msgid "XXL (Ladyfit) €35,00 EUR"
 msgstr ""
 
-#: speedfunding/views.py:394
+#: speedfunding/views.py:416
 msgid "First Name"
 msgstr ""
 
-#: speedfunding/views.py:398
+#: speedfunding/views.py:420
 msgid "Last Name"
 msgstr ""
 
-#: speedfunding/views.py:403
+#: speedfunding/views.py:425
 msgid "Email (just in case we need to check back with you)"
 msgstr ""
 
-#: speedfunding/views.py:407
+#: speedfunding/views.py:429
 msgid "Address Line 1"
 msgstr ""
 
-#: speedfunding/views.py:412
+#: speedfunding/views.py:434
 msgid "Address Line 2"
 msgstr ""
 
-#: speedfunding/views.py:416
+#: speedfunding/views.py:438
 msgid "Zip Code"
 msgstr ""
 
-#: speedfunding/views.py:421
+#: speedfunding/views.py:443
 msgid "City"
 msgstr ""
 
-#: speedfunding/views.py:426
+#: speedfunding/views.py:448
 msgid "Country"
 msgstr ""
 
-#: speedfunding/views.py:438
+#: speedfunding/views.py:460
 msgid "Choose a Shirt"
 msgstr ""
 
-#: speedfunding/views.py:441
+#: speedfunding/views.py:463
 msgid "Personal Data"
 msgstr ""
 
-#: speedfunding/views.py:449
+#: speedfunding/views.py:471
 msgid "Yes, I want this T-Shirt!"
 msgstr ""
 
-#: speedfunding/views.py:494
+#: speedfunding/views.py:516
 msgid "[fund C3S!] thank you for choosing a shirt!"
 msgstr ""
 
@@ -372,103 +372,113 @@ msgid "speedfund-help-us-lead3"
 msgstr ""
 
 #. Default: The Current Status
-#: speedfunding/templates/speedfunding.pt:49
+#: speedfunding/templates/speedfunding.pt:50
 msgid "the-status"
 msgstr ""
 
 #. Default: There are
-#: speedfunding/templates/speedfunding.pt:51
+#: speedfunding/templates/speedfunding.pt:54
 msgid "the-status-span-1"
 msgstr ""
 
 #. Default: missing of
-#: speedfunding/templates/speedfunding.pt:53
+#: speedfunding/templates/speedfunding.pt:56
 msgid "the-status-span-2"
 msgstr ""
 
-#. Default: needed
-#: speedfunding/templates/speedfunding.pt:54
+#. Default: required
+#: speedfunding/templates/speedfunding.pt:57
 msgid "the-status-span-3"
 msgstr ""
 
+#. Default: Another
+#: speedfunding/templates/speedfunding.pt:58
+msgid "the-status-span-4"
+msgstr ""
+
+#. Default: are yet unconfirmed
+#: speedfunding/templates/speedfunding.pt:60
+msgid "the-status-span-5"
+msgstr ""
+
 #. Default: At our blog, you can find more details on cost and balance.
-#: speedfunding/templates/speedfunding.pt:56
+#: speedfunding/templates/speedfunding.pt:62
 msgid "the-status-blog-paragraph"
 msgstr ""
 
 #. Default: (german)
-#: speedfunding/templates/speedfunding.pt:59
-#: speedfunding/templates/speedfunding.pt:144
+#: speedfunding/templates/speedfunding.pt:65
+#: speedfunding/templates/speedfunding.pt:153
 msgid "money-blog-linktitle-de"
 msgstr ""
 
 #. Default: (english)
-#: speedfunding/templates/speedfunding.pt:61
-#: speedfunding/templates/speedfunding.pt:146
+#: speedfunding/templates/speedfunding.pt:67
+#: speedfunding/templates/speedfunding.pt:155
 msgid "money-blog-linktitle-en"
 msgstr ""
 
 #. Default: The Options
-#: speedfunding/templates/speedfunding.pt:65
+#: speedfunding/templates/speedfunding.pt:71
 msgid "the-options-h2"
 msgstr ""
 
 #. Default: We have three options for you to choose from. The most preferred
 #. selections from our crowdfunding. Of course, you can come back more often than
 #. once.
-#: speedfunding/templates/speedfunding.pt:66
+#: speedfunding/templates/speedfunding.pt:72
 msgid "the-options-p1"
 msgstr ""
 
 #. Default: Donate Money
-#: speedfunding/templates/speedfunding.pt:74
+#: speedfunding/templates/speedfunding.pt:80
 msgid "donate-money-heading"
 msgstr ""
 
 #. Default: We are glad for any amount!
-#: speedfunding/templates/speedfunding.pt:75
+#: speedfunding/templates/speedfunding.pt:81
 msgid "donate-money-paragraph"
 msgstr ""
 
 #. Default: Donate by money transfer &raquo;
-#: speedfunding/templates/speedfunding.pt:78
+#: speedfunding/templates/speedfunding.pt:84
 msgid "button-donate-transfer"
 msgstr ""
 
 #. Default: Donate via PayPal &raquo;
-#: speedfunding/templates/speedfunding.pt:84
+#: speedfunding/templates/speedfunding.pt:90
 msgid "button-donate-paypal"
 msgstr ""
 
 #. Default: Please note: PayPal will deduct a certain part of the payment.
-#: speedfunding/templates/speedfunding.pt:89
-#: speedfunding/templates/speedfunding.pt:117
+#: speedfunding/templates/speedfunding.pt:95
+#: speedfunding/templates/speedfunding.pt:125
 msgid "speedfunding-paypal-costs-note"
 msgstr ""
 
 #. Default: Grab a T-Shirt
-#: speedfunding/templates/speedfunding.pt:94
+#: speedfunding/templates/speedfunding.pt:100
 msgid "tshirt-heading"
 msgstr ""
 
 #. Default: Here's the most picked motif from our crowdfunding for the very last
 #. time.
-#: speedfunding/templates/speedfunding.pt:95
+#: speedfunding/templates/speedfunding.pt:101
 msgid "tshirt-paragraph"
 msgstr ""
 
 #. Default: Pay by money transfer &raquo;
-#: speedfunding/templates/speedfunding.pt:106
+#: speedfunding/templates/speedfunding.pt:114
 msgid "button-shirt-transfer"
 msgstr ""
 
 #. Default: Pay via PayPal &raquo;
-#: speedfunding/templates/speedfunding.pt:112
+#: speedfunding/templates/speedfunding.pt:120
 msgid "button-shirt-paypal"
 msgstr ""
 
 #. Default: Become a member!
-#: speedfunding/templates/speedfunding.pt:122
+#: speedfunding/templates/speedfunding.pt:130
 msgid "shares-heading"
 msgstr ""
 
@@ -476,22 +486,22 @@ msgstr ""
 #. us and buy your shares in C3S. If you already have participated in the last
 #. crowdfunding you're already in - but of course you can get more shares. You are
 #. helping the C3S most by becoming a member.
-#: speedfunding/templates/speedfunding.pt:123
+#: speedfunding/templates/speedfunding.pt:131
 msgid "shares-paragraph"
 msgstr ""
 
 #. Default: Yes, I want to become a member of C3S! &raquo;
-#: speedfunding/templates/speedfunding.pt:126
+#: speedfunding/templates/speedfunding.pt:134
 msgid "button-become-member"
 msgstr ""
 
 #. Default: Membership for Companies &amp; Institutions &raquo;
-#: speedfunding/templates/speedfunding.pt:129
+#: speedfunding/templates/speedfunding.pt:137
 msgid "button-become-member-nonhuman"
 msgstr ""
 
 #. Default: We are flashfunding the last missing amount
-#: speedfunding/templates/speedfunding.pt:138
+#: speedfunding/templates/speedfunding.pt:147
 msgid "speedfund-subheading-help"
 msgstr ""
 
@@ -499,44 +509,44 @@ msgstr ""
 #. crowdfunding. Therefore, we have decided to reduce it to a minimum. We are
 #. speedfunding the last missing amount on our very own. No crowdfunding platform.
 #. We don't want to spend our members' money for any cost that can be avoided.
-#: speedfunding/templates/speedfunding.pt:141
+#: speedfunding/templates/speedfunding.pt:150
 msgid "speedfunding-help-paragraph-1"
 msgstr ""
 
 #. Default: In 2014, we want to start with the full public funding by the Federal
 #. State of North-Rhine Westphalia. It is 70.000 Euros that are missing.
-#: speedfunding/templates/speedfunding.pt:148
+#: speedfunding/templates/speedfunding.pt:157
 msgid "speedfunding-help-paragraph-2"
 msgstr ""
 
 #. Default: You didn't join the crowdfunding last time?
-#: speedfunding/templates/speedfunding.pt:151
+#: speedfunding/templates/speedfunding.pt:160
 msgid "speedfund-subheading-last-time"
 msgstr ""
 
 #. Default: That's your opportunity to make history! We will offer a fair
 #. collecting society for music artists to distribute their music just the way they
 #. want to.
-#: speedfunding/templates/speedfunding.pt:154
+#: speedfunding/templates/speedfunding.pt:163
 msgid "speedfunding-help-paragraph-3"
 msgstr ""
 
 #. Default: You did take part in the last crowdfunding? Well, then hurry up to
 #. three of your friends and tell them about our ideas - and why it is so damn
 #. important.
-#: speedfunding/templates/speedfunding.pt:157
+#: speedfunding/templates/speedfunding.pt:166
 msgid "speedfunding-help-paragraph-4"
 msgstr ""
 
 #. Default: More infos:
-#: speedfunding/templates/speedfunding.pt:161
+#: speedfunding/templates/speedfunding.pt:170
 msgid "speedfunding-help-paragraph-6"
 msgstr ""
 
 #. Default: The video is part of the crowdfunding campaign for Cultural Commons
 #. Collecting Society (C3S), an initiative to found a new, fair and flexible
 #. collecting society to benefit independent musicians.
-#: speedfunding/templates/speedfunding.pt:181
+#: speedfunding/templates/speedfunding.pt:190
 msgid "crowdfunding-video-p1"
 msgstr ""
 
