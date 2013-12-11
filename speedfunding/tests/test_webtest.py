@@ -6,7 +6,7 @@ import unittest
 import transaction
 from pyramid import testing
 from speedfunding.models import DBSession
-
+import os
 
 def _populate_testDB():
     """
@@ -96,19 +96,20 @@ class FunctionalTests(unittest.TestCase):
         #DBSession.remove()
         #DBSession = _initTestingDB()
         my_settings = {
-            'sqlalchemy.url': 'sqlite:///speedfunding_test.db',  # the database
+            'sqlalchemy.url': 'sqlite:///test_webtest.db',  # the database
             'available_languages': 'de en',
+            'speedfunding.dashboard_number': 20,
         }
         from speedfunding import main
         #try:
         app = main({}, **my_settings)
 
         from sqlalchemy import create_engine
-        engine = create_engine('sqlite://')
+        engine = create_engine('sqlite:///test_webtest.db')
         DBSession.configure(bind=engine)
         from speedfunding.models import Base
         Base.metadata.create_all(engine)
-
+        _populate_testDB()
         #import pdb; pdb.set_trace()
         #except:
         #    app = main({}, **my_other_settings)
@@ -125,14 +126,25 @@ class FunctionalTests(unittest.TestCase):
 #        DBSession.remove()
         DBSession.remove()
         testing.tearDown()
+        os.remove('test_webtest.db')
 
     def test_speedfunding(self):
         """
         load the landing page and form, do stuff
         """
         res = self.testapp.get('/', status=200)
-        self.failUnless('Speedfund' in res.body)
+        self.failUnless('FlashFund' in res.body)
         self.failUnless('Donate' in res.body)
+
+    def test_donate_view(self):
+        """
+        load the donation page and form, do stuff
+        """
+        res = self.testapp.get('/donate', status=200)
+        print res.body
+        self.failUnless('FlashFund' in res.body)
+        self.failUnless('The Donation' in res.body)
+        self.failUnless('Please tell us your email address' in res.body)
 
     def test_login_and_dashboard(self):
         """
@@ -293,7 +305,7 @@ class FunctionalTests(unittest.TestCase):
         res = self.testapp.reset()  # delete cookie
         res = self.testapp.get('/?_LOCALE_=en', status=200)
         self.failUnless(
-            'Speedfund the C3S' in res.body)
+            'FlashFunding!' in res.body)
 
     def test_lang_en(self):
         """load the front page, set to english (w/ pretty query string),
@@ -304,7 +316,7 @@ class FunctionalTests(unittest.TestCase):
         # we are being redirected...
         res1 = res.follow()
         self.failUnless(
-            'Speedfund the C3S' in res1.body)
+            'FlashFunding!' in res1.body)
 
 # so let's test the app's obedience to the language requested by the browser
 # i.e. will it respond to http header Accept-Language?
@@ -330,9 +342,7 @@ class FunctionalTests(unittest.TestCase):
                 'Accept-Language': 'de-DE'})
         #print(res.body) #  if you want to see the pages source
         self.failUnless(
-            'Speedfund the C3S' in res.body)
-        self.failUnless(
-            '<input type="hidden" name="_LOCALE_" value="de"' in res.body)
+            'FlashFunding' in res.body)
 
     def test_accept_language_header_en(self):
         """check the http 'Accept-Language' header obedience: english
@@ -377,23 +387,23 @@ class FunctionalTests(unittest.TestCase):
             headers={
                 'Accept-Language': 'af, cn'})  # ask for missing languages
         #print res.body
-        self.failUnless('Speedfund the C3S' in res.body)
+        self.failUnless('FlashFunding!' in res.body)
 
 #############################################################################
 # check for validation stuff
 
-    def test_form_lang_en_non_validating(self):
-        """load the join form, check english string exists"""
-        res = self.testapp.reset()
-        res = self.testapp.get('/?_LOCALE_=en', status=200)
-        form = res.form
-        #print(form.fields)
-        #print(form.fields.values())
-        #form['deformField1'] = 'paypal'
-        #form['address2'] = 'some address part'
-        res2 = form.submit('donate')
-        self.failUnless(
-            'There was a problem with your submission' in res2.body)
+#    def test_form_lang_en_non_validating(self):
+#        """load the join form, check english string exists"""
+#        res = self.testapp.reset()
+#        res = self.testapp.get('/?_LOCALE_=en', status=200)
+#        form = res.form
+#        #print(form.fields)
+#        #print(form.fields.values())
+#        #form['deformField1'] = 'paypal'
+#        #form['address2'] = 'some address part'
+#        res2 = form.submit('donate')
+#        self.failUnless(
+#            'There was a problem with your submission' in res2.body)
 
     def test_form_lang_de(self):
         """load the form, check german string exists"""
@@ -405,7 +415,7 @@ class FunctionalTests(unittest.TestCase):
         #print(res2)
         # test for german translation of template text (lingua_xml)
         self.failUnless(
-            'Speedfund the C3S' in res2.body)
+            'FlashFunding!' in res2.body)
         # test for german translation of form field label (lingua_python)
         self.failUnless('PayPal' in res2.body)
 
@@ -416,7 +426,7 @@ class FunctionalTests(unittest.TestCase):
         res = self.testapp.get('/?_LOCALE_=de', status=200)
         # test for german translation of template text (lingua_xml)
         self.failUnless(
-            'Speedfund the C3S' in res.body)
+            'FlashFunding!' in res.body)
         # test for german translation of form field label (lingua_python)
         self.failUnless('PayPal' in res.body)
 

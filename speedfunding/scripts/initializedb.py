@@ -61,7 +61,7 @@ def main(argv=sys.argv):
             DBSession.add(speedfunding_item)
             DBSession.flush()
             print("adding speedfunding_item")
-        except:
+        except:  # pragma: no cover
             print("could not add speedfunding_item.")
             # pass
     # a total
@@ -76,7 +76,7 @@ def main(argv=sys.argv):
             DBSession.add(a_total)
             DBSession.flush()
             print("adding a total")
-        except:
+        except:  # pragma: no cover
             print("could not add the total.")
             # pass
     # a group for authorization

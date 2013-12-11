@@ -8,7 +8,7 @@ from pyramid import testing
 from speedfunding.models import DBSession
 
 
-class TestSpeedfundingsSuccessCondition(unittest.TestCase):
+class TestFlashFunding(unittest.TestCase):
     def setUp(self):
         self.config = testing.setUp()
         from sqlalchemy import create_engine
@@ -66,8 +66,10 @@ class TestSpeedfundingsSuccessCondition(unittest.TestCase):
         #pprint.pprint(info)
         self.assertTrue('missing_sum' in info)
         self.assertTrue('the_total' in info)
-        self.assertTrue(
-            int(info['the_total']) + int(info['missing_sum']) == 70000)
+        # convert strings so we can do some math
+        _total = int(info['the_total'].replace(',', ''))
+        _missing = int(info['missing_sum'].replace(',', ''))
+        self.assertTrue(_total + _missing == 70000)
         self.assertEqual(info['project'], 'speedfunding')
 
 

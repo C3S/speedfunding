@@ -125,7 +125,7 @@ def speedfunding_view(request):
     _the_total = TheTotal.get_total()
     try:
         _missing_sum = 70000 - int(_the_total.amount_actual)
-    except TypeError, t:
+    except TypeError, t:  # pragma: no cover
         print("the error: %s" % t)
         #import pdb; pdb.set_trace()
         _missing_sum = "70000"
